@@ -1,0 +1,73 @@
+.account_container {
+    display: flex;
+    height: max-content;
+    width: 100%;
+}
+
+.account_col-left {
+    width: 270px;
+}
+
+.account_col-br {
+    background-color: var(--border);
+    margin: 0 25px;
+    opacity: 0.5;
+    width: 1px;
+}
+
+.account_col-right {
+    width: calc(100% - 320px);
+}
+
+.box_avatar {
+    border-radius: 50px;
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+}
+
+.btn_edit_avatar {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    height: 25px;
+    justify-content: center;
+    left: 0;
+    margin-bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+.account_security-item ~ .account_security-item {
+    padding-top: 1rem;
+}
+
+@media (max-width: 767px) {
+    .account_container {
+        flex-direction: column;
+    }
+
+    .account_col-left,
+    .account_col-right {
+        width: 100%;
+    }
+
+    .profile_tabs .ant-tabs-tab-btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile_tabs .ant-tabs-tab-btn .ant-tabs-tab-icon {
+        margin-inline-end: 4px !important;
+        margin-top: 4px;
+    }
+
+    .profile_status {
+        width: calc(50% - 4px);
+    }
+}

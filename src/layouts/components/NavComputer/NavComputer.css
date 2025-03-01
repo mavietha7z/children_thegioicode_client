@@ -1,0 +1,122 @@
+.sidebar-wrapper {
+    flex-shrink: 0;
+    background-color: #fff;
+}
+
+.sidebar {
+    border-right: 1px solid hsla(0, 0%, 55%, 0.13);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 64px);
+    z-index: 5;
+    margin-top: 64px;
+    padding-top: 20px;
+    position: sticky;
+    height: auto;
+    top: 64px;
+}
+
+.sidebar-arrow {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3) !important;
+    color: #6b7280;
+    cursor: pointer;
+    display: flex;
+    height: 24px;
+    justify-content: center;
+    position: absolute;
+    right: -12px;
+    top: 28px;
+    width: 24px;
+}
+
+.sidebar-arrow:hover {
+    box-shadow: 1px 1px 2px rgba(55, 65, 81, 0.1), 0 0 7px rgba(55, 65, 81, 0.3), 0 0 12px rgba(55, 65, 81, 0.7) !important;
+}
+
+.sidebar-container {
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar-over {
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar-content {
+    width: 245px;
+}
+
+.sidebar-content.collapsed {
+    width: 80px;
+}
+
+.sidebar-section {
+    background-color: #fff;
+    margin-bottom: 1rem;
+}
+
+.sidebar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-item {
+    margin-bottom: 3px;
+    padding-left: 1em;
+    padding-right: 1em;
+    position: relative;
+}
+
+.sidebar-affix {
+    background-color: var(--primary);
+    border-bottom-right-radius: var(--rounded-sm);
+    border-top-right-radius: var(--rounded-sm);
+    bottom: 5px;
+    left: 0;
+    position: absolute;
+    top: 5px;
+    width: 3px;
+}
+
+.sidebar-link {
+    align-items: center;
+    border-radius: var(--rounded-md);
+    color: var(--sub_text) !important;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    padding: 9px 8px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(var(--bg-side-text-rgb, var(--sub_text_rgb)), 0.2) !important;
+}
+
+.sidebar-link.active .sidebar-icon,
+.sidebar-link.active {
+    color: var(--primary) !important;
+}
+
+.sidebar-icon {
+    color: var(--sub_text) !important;
+    height: 22px;
+    width: 22px;
+}
+
+.sidebar-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar-narrow {
+    border-top: 1px solid var(--border);
+}

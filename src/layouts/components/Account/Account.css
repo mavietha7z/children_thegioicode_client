@@ -1,0 +1,120 @@
+.form_account-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_account-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #0006;
+    animation-name: FormAccountOverlay;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+}
+
+.form_account-content {
+    position: relative;
+    z-index: 1;
+    width: min(576px, 100% - 32px);
+    height: min(666px, 100% - 32px);
+    background: #fff;
+    border-radius: 16px;
+    overflow: auto;
+    animation-name: FormAccountContent;
+    animation-duration: 0.3s;
+    padding: 30px;
+}
+
+.form_account-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #4c4c4c;
+    background: rgba(22, 24, 35, 0.08);
+    font-size: 2.8rem;
+    line-height: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.form_account-close:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.form_account-header {
+    text-align: center;
+    max-width: 380px;
+    margin: 50px auto 0;
+}
+
+.form_account-form {
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+.form_account-wrapper.closing {
+    animation: closeFormAccount linear 0.3s;
+}
+
+.form_account-wrapper.closing .form_account-content {
+    animation: scaleFormAccountClose 0.3s;
+}
+
+@keyframes FormAccountOverlay {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes FormAccountContent {
+    0% {
+        scale: 0;
+        opacity: 0;
+    }
+    100% {
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+@keyframes closeFormAccount {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes scaleFormAccountClose {
+    0% {
+        scale: 1;
+        opacity: 1;
+    }
+    100% {
+        scale: 0;
+        opacity: 0;
+    }
+}

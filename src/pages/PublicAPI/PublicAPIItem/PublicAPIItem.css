@@ -1,0 +1,112 @@
+.api-item {
+    display: flex;
+    flex-direction: column;
+    height: 226px;
+    border-radius: 4px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), 0 -0.5rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+.api-item_header {
+    overflow: hidden;
+    padding: 0 14px 14px;
+    position: relative;
+    text-align: center;
+    height: 110px;
+    margin: 36px auto 0;
+}
+
+.api-item_header img {
+    transition: all ease 0.5s;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+.api-item_link span {
+    position: absolute;
+    z-index: 102;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all ease 0.5s;
+    opacity: 0;
+    background: var(--link_color);
+}
+
+.api-item_header:hover .api-item_mask {
+    opacity: 1;
+}
+
+.api-item_header:hover .api-item_link span {
+    opacity: 1;
+    display: inline-block;
+}
+
+.api-item_header:hover .api-item_link span:first-child {
+    margin-left: -15px;
+}
+
+.api-item_header:hover .api-item_link span:last-child {
+    margin-left: 15px;
+}
+
+.api-item_mask {
+    content: '';
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all ease 0.5s;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+}
+
+.api-item_link {
+    position: absolute;
+    z-index: 120;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.api-item_body {
+    padding: 0 14px;
+    text-align: center;
+}
+
+.api-item_title {
+    color: #232323;
+    transition: 0.3s all ease;
+    font-weight: 800;
+    line-height: 16px;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.api-item_title:hover {
+    color: var(--link_color);
+}
+
+.api-item-price {
+    position: absolute;
+    bottom: 16px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}

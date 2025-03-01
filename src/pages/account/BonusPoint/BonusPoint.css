@@ -1,0 +1,82 @@
+.bonus-point_wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    list-style: none;
+}
+
+.bonus-point_body {
+    display: flex;
+    height: 100%;
+    padding-inline: 12px;
+    padding-block: 12px;
+}
+
+.bonus-point_card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    list-style: none;
+}
+
+.bonus-point_card-body {
+    display: block;
+    height: 100%;
+    padding-inline: 12px;
+    padding-block: 12px;
+}
+
+.bonus-point_divider {
+    margin-block: 24px;
+    margin-inline: 8px;
+    flex: none;
+    width: 1px;
+    background-color: rgba(5, 5, 5, 0.06);
+}
+
+.bonus-point_tabs .ant-tabs-nav {
+    margin-bottom: 0;
+    padding-left: 16px;
+}
+
+@media (max-width: 767px) {
+    .bonus-point_body {
+        flex-direction: column;
+    }
+
+    .bonus-point_divider {
+        width: initial;
+        height: 1px;
+        margin-block: 8px;
+    }
+
+    .bonus-point_title {
+        padding: 7px 0;
+    }
+}
