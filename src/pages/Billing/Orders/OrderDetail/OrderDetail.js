@@ -26,7 +26,7 @@ function OrderDetail() {
 
     useEffect(() => {
         if (order_id) {
-            document.title = `Thegioicode.com - #${order_id}`;
+            document.title = `Netcode.vn - #${order_id}`;
 
             const fetch = async () => {
                 const result = await requestUserGetOrderDetail(order_id);
@@ -302,7 +302,7 @@ function OrderDetail() {
                                                             style={{ fontSize: 18, width: 35, height: 35, lineHeight: 35 }}
                                                         />
                                                         <div>
-                                                            <span className="mr-2">Ví Thegioicode</span>
+                                                            <span className="mr-2">Ví Netcode</span>
                                                             <p className="text-primary mb-0 line-height-15 font-size-13">
                                                                 Số dư: {convertCurrency(currentUser?.wallet.total_balance)}
                                                             </p>
@@ -318,7 +318,7 @@ function OrderDetail() {
                                                         src={imageWallet}
                                                         style={{ fontSize: 18, width: 35, height: 35, lineHeight: 35 }}
                                                     />
-                                                    <span className="text-black">Ví Thegioicode</span>
+                                                    <span className="text-black">Ví Netcode</span>
                                                 </Flex>
                                             </div>
                                         )}

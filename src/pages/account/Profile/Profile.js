@@ -35,7 +35,7 @@ function Profile() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Thông tin tài khoản';
+        document.title = 'Netcode.vn - Thông tin tài khoản';
 
         if (!currentUser) {
             navigate(router.home);

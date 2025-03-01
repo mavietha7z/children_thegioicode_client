@@ -12,7 +12,7 @@ function Security() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Bảo mật tài khoản';
+        document.title = 'Netcode.vn - Bảo mật tài khoản';
 
         if (!currentUser) {
             navigate(router.home);
@@ -60,7 +60,7 @@ function Security() {
                     factor
                     link={currentUser?.two_factor_auth ? null : `${router.twoFactor}`}
                     textLink="Bật xác thực"
-                    description="Bảo vệ tài khoản của bạn khỏi bị đánh cắp bằng cách bật xác thực 2 bước. Khi bật xác thực 2 bước, bạn bắt buộc phải nhập mã xác thực mỗi khi đăng nhập vào Thegioicode"
+                    description="Bảo vệ tài khoản của bạn khỏi bị đánh cắp bằng cách bật xác thực 2 bước. Khi bật xác thực 2 bước, bạn bắt buộc phải nhập mã xác thực mỗi khi đăng nhập vào Netcode"
                 />
             </div>
         </Account>

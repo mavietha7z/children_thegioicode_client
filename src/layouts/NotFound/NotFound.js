@@ -16,13 +16,13 @@ function NotFound({ coming = false }) {
             ) : (
                 <Fragment>
                     <Helmet>
-                        <title>Thegioicode.com - Trang không tồn tại</title>
+                        <title>Netcode.vn - Trang không tồn tại</title>
                         <meta key="description" name="description" content="URL của nội dung này đã bị thay đổi hoặc không còn tồn tại." />
 
-                        <link rel="canonical" href={`https://thegioicode.com${pathname}`} />
-                        <meta property="og:url" content={`https://thegioicode.com${pathname}`} />
-                        <meta property="og:image" content="https://thegioicode.com/images/izgdwacbGc.png" />
-                        <meta property="og:title" content="Thegioicode.com - Trang không tồn tại" />
+                        <link rel="canonical" href={`https://netcode.vn${pathname}`} />
+                        <meta property="og:url" content={`https://netcode.vn${pathname}`} />
+                        <meta property="og:image" content="https://netcode.vn/images/izgdwacbGc.png" />
+                        <meta property="og:title" content="Netcode.vn - Trang không tồn tại" />
                         <meta property="og:description" content="URL của nội dung này đã bị thay đổi hoặc không còn tồn tại." />
                     </Helmet>
 

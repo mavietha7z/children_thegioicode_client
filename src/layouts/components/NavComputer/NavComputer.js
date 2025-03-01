@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
     IconApi,
-    IconUsers,
-    IconNetwork,
     IconServer2,
     IconTemplate,
     IconArrowLeft,
@@ -12,7 +10,6 @@ import {
     IconArrowRight,
     IconHomeDollar,
     IconSourceCode,
-    IconClipboardText,
 } from '@tabler/icons-react';
 
 import './NavComputer.css';
@@ -30,11 +27,6 @@ const topItems = [
         icon: <IconApi className="sidebar-icon" />,
     },
     {
-        title: 'Tài Khoản',
-        router: router.resources,
-        icon: <IconUsers className="sidebar-icon" />,
-    },
-    {
         title: 'Mã Nguồn',
         router: router.sources,
         icon: <IconSourceCode className="sidebar-icon" />,
@@ -44,12 +36,6 @@ const topItems = [
         router: router.templates,
         icon: <IconTemplate className="sidebar-icon" />,
     },
-
-    {
-        title: 'Proxy Server',
-        router: router.proxy_server,
-        icon: <IconNetwork className="sidebar-icon" />,
-    },
     {
         title: 'Cloud Server',
         router: router.cloud_server,
@@ -58,11 +44,6 @@ const topItems = [
 ];
 
 const bottomItems = [
-    {
-        title: 'Tài liệu',
-        router: router.document,
-        icon: <IconClipboardText className="sidebar-icon" />,
-    },
     {
         title: 'Thanh toán',
         router: router.billing,

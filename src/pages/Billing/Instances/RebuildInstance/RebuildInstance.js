@@ -30,7 +30,7 @@ function RebuildInstance() {
 
     useEffect(() => {
         if (instance_id) {
-            document.title = `Thegioicode.com - #${instance_id}`;
+            document.title = `Netcode.vn - #${instance_id}`;
 
             // Các hàm tiện ích
             const handleUnauthorized = () => {

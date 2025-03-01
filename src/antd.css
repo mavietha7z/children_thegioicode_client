@@ -735,7 +735,7 @@ p:has(img) {
     box-shadow: 0 6px 12px -4px #427cff;
 }
 
-.btn-thegioicode {
+.btn-netcode {
     min-width: 120px;
     height: 42px;
     line-height: 42px;
@@ -747,7 +747,7 @@ p:has(img) {
     cursor: pointer;
 }
 
-.btn-thegioicode:hover {
+.btn-netcode:hover {
     border: 1px solid #0069ff;
     transition: all 0.3s ease 0s;
     background-color: rgba(0, 105, 255, 0.8);
@@ -834,41 +834,41 @@ p:has(img) {
 }
 
 /* Terms */
-.thegioicode-tgc h2 {
+.netcode-tgc h2 {
     font-size: 28px;
     margin: 25px 0 16px;
 }
 
-.thegioicode-tgc h3 {
+.netcode-tgc h3 {
     font-size: 23px;
     margin-bottom: 16px;
 }
 
-.thegioicode-tgc ul {
+.netcode-tgc ul {
     padding-left: 40px;
 }
 
-.thegioicode-tgc ul li {
+.netcode-tgc ul li {
     list-style: disc !important;
     list-style-position: inside;
     margin-bottom: 16px;
 }
 
-.thegioicode-tgc ul li ul {
+.netcode-tgc ul li ul {
     margin-top: 12px;
 }
 
-.thegioicode-tgc ul li li {
+.netcode-tgc ul li li {
     list-style: circle !important;
     list-style-position: inside;
     margin-bottom: 10px;
 }
 
-.thegioicode-tgc p {
+.netcode-tgc p {
     margin-bottom: 16px;
 }
 
-.thegioicode-tgc table th td {
+.netcode-tgc table th td {
     padding: 8px;
     display: table-cell;
     text-align: left;

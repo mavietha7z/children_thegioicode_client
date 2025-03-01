@@ -333,7 +333,7 @@ function CloudServer() {
     return (
         <Fragment>
             <Helmet>
-                <title>Thegioicode.com - Máy chủ ảo điện toán đám mây</title>
+                <title>Netcode.vn - Máy chủ ảo điện toán đám mây</title>
                 <meta
                     key="description"
                     name="description"
@@ -341,10 +341,10 @@ function CloudServer() {
                 />
 
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href={`https://thegioicode.com${router.cloud_server}`} />
-                <meta property="og:url" content={`https://thegioicode.com${router.cloud_server}`} />
-                <meta property="og:title" content="Thegioicode.com - Máy chủ ảo điện toán đám mây" />
-                <meta property="og:image" content="https://thegioicode.com/images/WaXXUWGPTf.png" />
+                <link rel="canonical" href={`https://netcode.vn${router.cloud_server}`} />
+                <meta property="og:url" content={`https://netcode.vn${router.cloud_server}`} />
+                <meta property="og:title" content="Netcode.vn - Máy chủ ảo điện toán đám mây" />
+                <meta property="og:image" content="https://netcode.vn/images/WaXXUWGPTf.png" />
                 <meta
                     property="og:description"
                     content="Khởi tạo máy chủ Cloud Server, Cloud VPS tốc độ cao cùng với các chu kỳ thanh toán linh hoạt và hỗ trợ chuyên nghiệp 24/7"

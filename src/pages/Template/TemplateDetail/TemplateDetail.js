@@ -97,15 +97,15 @@ function TemplateDetail() {
         <Fragment>
             {template && (
                 <Helmet>
-                    <title>Thegioicode.com - {template.title}</title>
+                    <title>Netcode.vn - {template.title}</title>
                     <meta key="description" name="description" content={`${template.description}`} />
 
                     <meta name="robots" content="index, follow" />
                     <meta property="og:image" content={`${template.image_url}`} />
-                    <link rel="canonical" href={`https://thegioicode.com${pathname}`} />
+                    <link rel="canonical" href={`https://netcode.vn${pathname}`} />
                     <meta property="og:description" content={`${template.description}`} />
-                    <meta property="og:url" content={`https://thegioicode.com${pathname}`} />
-                    <meta property="og:title" content={`Thegioicode.com - ${template.title}`} />
+                    <meta property="og:url" content={`https://netcode.vn${pathname}`} />
+                    <meta property="og:title" content={`Netcode.vn - ${template.title}`} />
                 </Helmet>
             )}
 
@@ -216,11 +216,11 @@ function TemplateDetail() {
                                                         },
                                                         {
                                                             pattern: /^(?!:\/\/)([a-zA-Z0-9-_]{1,63}\.)+[a-zA-Z]{2,6}$/,
-                                                            message: 'Tên miền có định dạng như: thegioicode.com',
+                                                            message: 'Tên miền có định dạng như: Netcode.vn',
                                                         },
                                                     ]}
                                                 >
-                                                    <Input size="large" placeholder="VD: thegioicode.com" />
+                                                    <Input size="large" placeholder="VD: Netcode.vn" />
                                                 </Form.Item>
                                                 <div className="mb-4 mt-1 font-size-13">
                                                     Nếu bạn chưa có tên miền thể mua{' '}
@@ -244,7 +244,7 @@ function TemplateDetail() {
                                                         },
                                                     ]}
                                                 >
-                                                    <Input size="large" placeholder="VD: admin@thegioicode.com" />
+                                                    <Input size="large" placeholder="VD: admin@Netcode.vn" />
                                                 </Form.Item>
                                             </Col>
                                             <Col md={24} xs={24}>

@@ -45,7 +45,7 @@ function SourceCategory() {
     return (
         <Fragment>
             <Helmet>
-                <title>Thegioicode.com - Mã nguồn {category === 'free' ? 'miễn phí' : 'trả phí'}</title>
+                <title>Netcode.vn - Mã nguồn {category === 'free' ? 'miễn phí' : 'trả phí'}</title>
                 <meta
                     key="description"
                     name="description"
@@ -53,10 +53,10 @@ function SourceCategory() {
                 />
 
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href={`https://thegioicode.com${pathname}`} />
-                <meta property="og:url" content={`https://thegioicode.com${pathname}`} />
-                <meta property="og:image" content="https://thegioicode.com/images/FiTPxMPpjZ.png" />
-                <meta property="og:title" content={`Thegioicode.com - Mã nguồn ${category === 'free' ? 'miễn phí' : 'trả phí'}`} />
+                <link rel="canonical" href={`https://netcode.vn${pathname}`} />
+                <meta property="og:url" content={`https://netcode.vn${pathname}`} />
+                <meta property="og:image" content="https://netcode.vn/images/FiTPxMPpjZ.png" />
+                <meta property="og:title" content={`Netcode.vn - Mã nguồn ${category === 'free' ? 'miễn phí' : 'trả phí'}`} />
                 <meta
                     property="og:description"
                     content="Dịch vụ mã nguồn có sẵn giúp tiết kiệm chi phí và rút ngắn thời gian xây dựng website."

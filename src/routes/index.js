@@ -4,9 +4,6 @@ import Cart from '~/pages/Cart';
 
 import Home from '~/layouts/Home/Home';
 
-import DocumentAccount from '~/pages/Document/Account';
-import DocumentCloudServer from '~/pages/Document/CloudServer';
-
 import NotFound from '~/layouts/NotFound';
 
 import Notification from '~/pages/Notification';
@@ -50,9 +47,6 @@ import ProxyServer from '~/pages/ProxyServer';
 
 import CloudServer from '~/pages/CloudServer';
 
-import Product from '~/pages/resource/Product';
-import Category from '~/pages/resource/Category';
-
 import Terms from '~/layouts/components/Terms';
 import Commit from '~/layouts/components/Commit';
 import Privacy from '~/layouts/components/Privacy';
@@ -71,21 +65,18 @@ export const privateRoutes = [
     { path: router.general, component: General },
     { path: router.billing, component: Recharge },
     { path: router.security, component: Security },
-    { path: router.resources, component: Category },
     { path: router.templates, component: Template },
     { path: router.twoFactor, component: TwoFactor },
     { path: router.public_apis, component: PublicAPI },
     { path: router.billing_orders, component: Orders },
     { path: router.bonus_point, component: BonusPoint },
     { path: router.billing_balance, component: Balance },
-    { path: router.document, component: DocumentAccount },
     { path: router.proxy_server, component: ProxyServer },
     { path: router.cloud_server, component: CloudServer },
     { path: router.billing_invoices, component: Invoices },
     { path: router.notifications, component: Notification },
     { path: router.history_login, component: HistoryLogin },
     { path: router.billing_instances, component: Instances },
-    { path: router.resources + '/:slug', component: Product },
     { path: router.notification, component: UserNotification },
     { path: router.changePassword, component: ChangePassword },
     { path: router.billing_templates, component: BillingTemplate },
@@ -93,7 +84,6 @@ export const privateRoutes = [
     { path: router.public_apis + '/:slug', component: PublicAPIDetail },
     { path: router.sources + '/detail/:slug', component: SourcesDetail },
     { path: router.billing_orders + '/:order_id', component: OrderDetail },
-    { path: router.document_cloud_server, component: DocumentCloudServer },
     { path: router.templates + '/detail/:slug', component: TemplateDetail },
     { path: router.billing_invoices + '/:invoice_id', component: InvoiceDetail },
     { path: router.billing_instances + '/:instance_id', component: InstanceDetail },

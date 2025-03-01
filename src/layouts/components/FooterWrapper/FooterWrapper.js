@@ -20,7 +20,7 @@ function FooterWrapper() {
                         <Col md={8} xs={24}>
                             <div className="title">
                                 <Link to={router.home}>
-                                    <img src={imageLogo} className="logo" alt="Thegioicode" />
+                                    <img src={imageLogo} className="logo" alt="Netcode" />
                                 </Link>
                                 <div className="d-flex gap-2 mt-4">
                                     <IconMapPin size={20} />
@@ -32,11 +32,11 @@ function FooterWrapper() {
                                 </div>
                                 <div className="d-flex gap-2">
                                     <IconBrandTelegram size={20} />
-                                    <p className="mb-3">@Thegioicode</p>
+                                    <p className="mb-3">@Netcode</p>
                                 </div>
                                 <div className="d-flex gap-2 mb-4">
                                     <IconMail size={20} />
-                                    <p className="mb-3">Support@thegioicode.com</p>
+                                    <p className="mb-3">Support@netcode.vn</p>
                                 </div>
                                 <a href="/" target="_blank" rel="noreferrer">
                                     <img src={imageIconDmca} alt="" />
@@ -116,7 +116,7 @@ function FooterWrapper() {
                                     </ul>
                                 </Col>
                                 <Col md={8} xs={24}>
-                                    <div className="footer-title">Công Ty TNHH Thegioicode</div>
+                                    <div className="footer-title">Công Ty TNHH Netcode</div>
                                     <ul>
                                         <li>
                                             <p className="mb-3">
@@ -145,17 +145,17 @@ function FooterWrapper() {
                     <Row>
                         <Col span={24}>
                             <div className="footer-bottom">
-                                <p>Copyright © 2024 Thegioicode. All Rights Reserved</p>
+                                <p>Copyright © 2024 Netcode. All Rights Reserved</p>
 
                                 <div className="footer-icon">
                                     <ul>
                                         <li>
-                                            <a href="https://www.facebook.com/thegioicodecom" target="_blank" rel="noreferrer">
+                                            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
                                                 <img src={imageIconFacebook} alt="" />
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://zalo.me/0706661234" target="_blank" rel="noreferrer">
+                                            <a href="https://zalo.me/0987654321" target="_blank" rel="noreferrer">
                                                 <img src={imageIconZalo} alt="" />
                                             </a>
                                         </li>

@@ -57,7 +57,7 @@ function General() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Cài đặt chung';
+        document.title = 'Netcode.vn - Cài đặt chung';
 
         if (!currentUser) {
             navigate(`${router.home}`);

@@ -22,7 +22,7 @@ function Invoices() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Hoá đơn';
+        document.title = 'Netcode.vn - Hoá đơn';
 
         const fetch = async () => {
             setLoading(true);

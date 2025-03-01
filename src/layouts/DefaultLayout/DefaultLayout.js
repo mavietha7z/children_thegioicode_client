@@ -9,26 +9,21 @@ import './DefaultLayout.css';
 import router from '~/configs/routes';
 import { convertCurrency } from '~/configs';
 import Account from '../components/Account';
-import NewsFeed from '../components/NewsFeed';
 import imageLogo from '~/assets/image/logo.png';
 import NavMobile from '../components/NavMobile';
 import NavComputer from '../components/NavComputer';
 import ProfileMenu from '../components/ProfileMenu';
-import IconSpeaKer from '~/assets/icon/IconSpeaKer';
 import Notification from '../components/Notification';
 import { requestUserGetCurrent } from '~/services/auth';
 import FooterWrapper from '../components/FooterWrapper';
 import { dispatchConfigApps } from '~/redux/reducer/app';
+import { requestUserGetConfigApps } from '~/services/app';
 import { loginUserSuccess, logoutUserSuccess } from '~/redux/reducer/auth';
-import { requestUserGetConfigApps, requestUserGetNewsFeeds } from '~/services/app';
 
 const { Content, Header } = Layout;
 
 function DefaultLayout({ children }) {
     const [loading, setLoading] = useState(true);
-    const [newsFeeds, setNewsFeeds] = useState([]);
-    const [countNewsFeed, setCountNewsFeed] = useState(0);
-    const [openNewFeed, setOpenNewFeed] = useState(false);
     const [openAccount, setOpenAccount] = useState(false);
     const [moduleAccount, setModuleAccount] = useState(null);
     const [websiteStatus, setWebsiteStatus] = useState(true);
@@ -46,14 +41,6 @@ function DefaultLayout({ children }) {
 
     useEffect(() => {
         const fetch = async () => {
-            const resultNewsFeed = await requestUserGetNewsFeeds();
-            if (resultNewsFeed.status === 200) {
-                const count = resultNewsFeed.data.filter((item) => item.is_like === false).length;
-
-                setCountNewsFeed(count);
-                setNewsFeeds(resultNewsFeed.data);
-            }
-
             const result = await requestUserGetConfigApps();
             if (result.status === 200) {
                 const updateFavicon = (iconUrl) => {
@@ -80,7 +67,7 @@ function DefaultLayout({ children }) {
             '%cNếu bạn cố tình bị phát hiện sẽ bị khoá toàn khoản và chặn truy cập vĩnh viễn!',
             'color:#29c4a9;font-size:14px;font-weight:600',
         );
-        console.log('%cCopyright © Thegioicode', 'color:#096eff;font-size:16px;font-weight:600');
+        console.log('%cCopyright © Netcode', 'color:#096eff;font-size:16px;font-weight:600');
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -147,13 +134,6 @@ function DefaultLayout({ children }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lastBalance, configs]);
 
-    const handleToggleNewFeed = () => {
-        if (newsFeeds.length > 0) {
-            setOpenNewFeed(true);
-            document.body.classList.add('open-new-feed');
-        }
-    };
-
     return (
         <Fragment>
             {loading ? (
@@ -168,26 +148,14 @@ function DefaultLayout({ children }) {
                                 <h2 className="font-size-15">{websiteStatusReason}</h2>
                                 <p className="text-subtitle mt-2">
                                     <span className="mr-1">Contact:</span>
-                                    <a className="text-subtitle hover-blue" href="mailto:support@thegioicode.com">
-                                        support@thegioicode.com
+                                    <a className="text-subtitle hover-blue" href="mailto:support@Netcode.vn">
+                                        support@Netcode.vn
                                     </a>
                                 </p>
                             </div>
                         </Flex>
                     ) : (
                         <Layout>
-                            <div className="news_feed_action">
-                                <Badge count={countNewsFeed} offset={[-2, 10]}>
-                                    <button onClick={handleToggleNewFeed}>
-                                        <span>
-                                            <IconSpeaKer />
-                                        </span>
-                                    </button>
-                                </Badge>
-                            </div>
-
-                            {openNewFeed && <NewsFeed data={newsFeeds} onHide={setOpenNewFeed} />}
-
                             {openAccount && moduleAccount && (
                                 <Account module={moduleAccount} setModule={setModuleAccount} onHide={setOpenAccount} />
                             )}
@@ -202,7 +170,7 @@ function DefaultLayout({ children }) {
                                         <Link to={router.home} style={{ lineHeight: 1 }}>
                                             <img
                                                 src={configs?.website_logo_url || imageLogo}
-                                                alt="Thegioicode"
+                                                alt="Netcode"
                                                 className="header__logo-mobile"
                                             />
                                         </Link>
@@ -212,7 +180,7 @@ function DefaultLayout({ children }) {
                                             <div className="header__logo-pc">
                                                 <img
                                                     src={configs?.website_logo_url || imageLogo}
-                                                    alt="Thegioicode"
+                                                    alt="Netcode"
                                                     className="header__logo-mobile"
                                                 />
                                             </div>

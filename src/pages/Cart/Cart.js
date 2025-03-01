@@ -40,7 +40,7 @@ function Cart() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Giỏ hàng';
+        document.title = 'Netcode.vn - Giỏ hàng';
 
         const fetch = async () => {
             setLoading(true);

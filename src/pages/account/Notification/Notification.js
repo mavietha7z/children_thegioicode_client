@@ -118,7 +118,7 @@ function Notification() {
     }));
 
     useEffect(() => {
-        document.title = 'Thegioicode - Cài đặt thông báo';
+        document.title = 'Netcode - Cài đặt thông báo';
     }, []);
 
     return (

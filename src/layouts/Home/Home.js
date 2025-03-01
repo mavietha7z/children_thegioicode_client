@@ -125,7 +125,7 @@ function Home() {
                                                             <div className="button-action">
                                                                 <Link
                                                                     to={carousel.link_to}
-                                                                    className="btn-blue btn-radius btn-thegioicode btn-big-large text-uppercase"
+                                                                    className="btn-blue btn-radius btn-netcode btn-big-large text-uppercase"
                                                                 >
                                                                     {carousel.btn_text}
                                                                 </Link>
@@ -146,7 +146,7 @@ function Home() {
                         {currentUser && <ServiceUsing />}
 
                         <div>
-                            <h2 className="font-semibold font-size-20 mb-5">Khởi tạo dịch vụ với hệ sinh thái Thegioicode</h2>
+                            <h2 className="font-semibold font-size-20 mb-5">Khởi tạo dịch vụ với hệ sinh thái Netcode</h2>
 
                             <Row
                                 style={{

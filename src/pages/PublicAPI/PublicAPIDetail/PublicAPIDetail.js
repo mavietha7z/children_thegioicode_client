@@ -43,14 +43,14 @@ function PublicAPIDetail() {
         <Fragment>
             {api && (
                 <Helmet>
-                    <title>Thegioicode.com - {api.title}</title>
+                    <title>Netcode.vn - {api.title}</title>
                     <meta key="description" name="description" content={`${generateCateString(api.description, 117)}`} />
 
                     <meta name="robots" content="index, follow" />
-                    <link rel="canonical" href={`https://thegioicode.com${pathname}`} />
-                    <meta property="og:url" content={`https://thegioicode.com${pathname}`} />
+                    <link rel="canonical" href={`https://netcode.vn${pathname}`} />
+                    <meta property="og:url" content={`https://netcode.vn${pathname}`} />
                     <meta property="og:image" content={`${api.image_url}`} />
-                    <meta property="og:title" content={`Thegioicode.com - ${api.title}`} />
+                    <meta property="og:title" content={`Netcode.vn - ${api.title}`} />
                     <meta property="og:description" content={`${generateCateString(api.description, 117)}`} />
                 </Helmet>
             )}

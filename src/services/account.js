@@ -144,13 +144,3 @@ export const requestUserExchangeBonusPoint = async (data) => {
         return error.response?.data;
     }
 };
-
-export const requestUserCreateTokenApi = async (data) => {
-    try {
-        const res = await request.post('/my/accounts/partner', data);
-
-        return res.data;
-    } catch (error) {
-        return error.response?.data;
-    }
-};

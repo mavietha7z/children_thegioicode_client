@@ -9,7 +9,7 @@ function Commit() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Cam hết dịch vụ';
+        document.title = 'Netcode.vn - Cam hết dịch vụ';
     }, []);
 
     const columns = [
@@ -32,7 +32,7 @@ function Commit() {
 
     const dataSource = [
         { uptime: 'Ít hơn 99,9% nhưng lớn hơn hoặc bằng 99,0%', ready: '43 phút – 432 phút', compensate: '10%' },
-        { uptime: 'Ít hơn 99,0% Toàn bộ dịch vụ của Thegioicode', ready: 'Lớn hơn 432 phút', compensate: '30%' },
+        { uptime: 'Ít hơn 99,0% Toàn bộ dịch vụ của Netcode', ready: 'Lớn hơn 432 phút', compensate: '30%' },
     ];
 
     return (
@@ -61,13 +61,13 @@ function Commit() {
                         <span className="text-subtitle text-uppercase">Cam kết dịch vụ</span>
                     </div>
 
-                    <div className="font-size-15 thegioicode-tgc">
+                    <div className="font-size-15 netcode-tgc">
                         <em>
                             <p>
-                                <b>Cam kết chất lượng dịch vụ ( Service Level Agreement – SLA )</b> là bản cam kết giữa Thegioicode và khách
-                                hàng của Thegioicode. SLA quy định trách nhiệm và chính sách hoàn tiền của chúng tôi trong trường hợp chúng
-                                tôi không đáp ứng được những cam kết này. Chúng tôi luôn mong muốn các khách hàng có thể cảm thấy thực sự an
-                                tâm và quyết định dễ dàng trong việc sử dụng các dịch vụ của chúng tôi.
+                                <b>Cam kết chất lượng dịch vụ ( Service Level Agreement – SLA )</b> là bản cam kết giữa Netcode và khách
+                                hàng của Netcode. SLA quy định trách nhiệm và chính sách hoàn tiền của chúng tôi trong trường hợp chúng tôi
+                                không đáp ứng được những cam kết này. Chúng tôi luôn mong muốn các khách hàng có thể cảm thấy thực sự an tâm
+                                và quyết định dễ dàng trong việc sử dụng các dịch vụ của chúng tôi.
                             </p>
                         </em>
 
@@ -83,10 +83,9 @@ function Commit() {
                         <h2>1. Cam kết về tính sẵn sàng của hệ thống</h2>
                         <ul>
                             <li>
-                                Thegioicode cam kết dùng hết nỗ lực của mình đảm bảo thời gian uptime hàng tháng của hệ thống luôn sẵn sàng
-                                tối thiểu ở mức 99,9% trong suốt một chu kỳ thanh toán theo cam kết dịch vụ. Trong trường hợp Thegioicode
-                                không đáp ứng được cam kết trên, khách hàng có đầy đủ điều kiện để nhận lại phí dịch vụ theo cam kết dưới
-                                đây.
+                                Netcode cam kết dùng hết nỗ lực của mình đảm bảo thời gian uptime hàng tháng của hệ thống luôn sẵn sàng tối
+                                thiểu ở mức 99,9% trong suốt một chu kỳ thanh toán theo cam kết dịch vụ. Trong trường hợp Netcode không đáp
+                                ứng được cam kết trên, khách hàng có đầy đủ điều kiện để nhận lại phí dịch vụ theo cam kết dưới đây.
                             </li>
                             <li>
                                 Các định nghĩa:
@@ -116,7 +115,7 @@ function Commit() {
                             className="mb-4"
                         />
                         <ul>
-                            <li>Thegioicode chỉ áp dụng mức phí đền bù dịch vụ đối với các khoản thanh toán từ khách hàng.</li>
+                            <li>Netcode chỉ áp dụng mức phí đền bù dịch vụ đối với các khoản thanh toán từ khách hàng.</li>
                             <li>
                                 Phí đền bù dịch vụ sẽ được cộng vào số dư tài khoản (balance) để sử dụng cho các kỳ thanh toán tiếp theo.
                             </li>
@@ -129,10 +128,9 @@ function Commit() {
                         </p>
                         <ul>
                             <li>
-                                Để yêu cầu bồi thường trong các trường hợp Thegioicode không đạt được cam kết, khách hàng vui lòng email đến
-                                địa chỉ <a href="mailto:support@thegioicode.com">support@thegioicode.com</a> Nếu yêu cầu bồi thường là hợp
-                                lệ, khoản tiền đền bù cho quý khách sẽ được cộng vào tài khoản balance để sử dụng cho các lần thanh toán
-                                sau.
+                                Để yêu cầu bồi thường trong các trường hợp Netcode không đạt được cam kết, khách hàng vui lòng email đến địa
+                                chỉ <a href="mailto:support@Netcode.vn">support@netcode.vn</a> Nếu yêu cầu bồi thường là hợp lệ, khoản tiền
+                                đền bù cho quý khách sẽ được cộng vào tài khoản balance để sử dụng cho các lần thanh toán sau.
                             </li>
                             <li>
                                 Yêu cầu bồi thường hợp lệ sẽ bao gồm các thông tin sau:
@@ -153,9 +151,9 @@ function Commit() {
                         <p>
                             Bảo trì hệ thống là công việc bắt buộc thực hiện để đảm bảo tính liên tục của dịch vụ được cung cấp đến Khách
                             hàng. Việc bảo trì có thể được lên kế hoạch thực hiện vào bất kỳ ngày nào trong tuần (bao gồm cả ngày cuối tuần)
-                            và có thể vào bất kỳ thời điểm nào trong ngày. Tuy nhiên, Thegioicode sẽ nỗ lực hết sức để tiến hành việc bảo
-                            trì ở các thời điểm ít ảnh hưởng đến việc sử dụng dịch vụ của Khách hàng nhất. Việc bảo trì hệ thống sẽ được
-                            Thegioicode tiến hành theo cách như sau:
+                            và có thể vào bất kỳ thời điểm nào trong ngày. Tuy nhiên, Netcode sẽ nỗ lực hết sức để tiến hành việc bảo trì ở
+                            các thời điểm ít ảnh hưởng đến việc sử dụng dịch vụ của Khách hàng nhất. Việc bảo trì hệ thống sẽ được Netcode
+                            tiến hành theo cách như sau:
                         </p>
                         <ul>
                             <li>
@@ -166,8 +164,8 @@ function Commit() {
                                 Những bảo trì ảnh hưởng tới hoạt động server của khách hàng sẽ được thông báo trước:
                                 <ul>
                                     <li>
-                                        48 giờ so với thời điểm bắt đầu bảo trì bằng hình thức email hoặc thông báo trên website
-                                        thegioicode.com với những bảo trì định kỳ.
+                                        48 giờ so với thời điểm bắt đầu bảo trì bằng hình thức email hoặc thông báo trên website Netcode.vn
+                                        với những bảo trì định kỳ.
                                     </li>
                                     <li>
                                         Ít nhất 15 phút trước thời điểm bắt đầu bảo trì bằng hình thức email hoặc điện thoại với những bảo
@@ -179,7 +177,7 @@ function Commit() {
                         <p>Tổng thời gian bảo trì ảnh hưởng tới hoạt động server của khách hàng trong 1 tháng không quá 2 giờ.</p>
 
                         <h2>3. Các trường hợp loại trừ</h2>
-                        <p>Thegioicode sẽ không chịu trách nhiệm đền bù trong các trường hợp sau:</p>
+                        <p>Netcode sẽ không chịu trách nhiệm đền bù trong các trường hợp sau:</p>
                         <ul>
                             <li>Các trường hợp bị tạm dừng hoặc chấm dứt sử dụng được quy định trong mục 5 của điều khoản sử dụng.</li>
                             <li>
@@ -200,17 +198,17 @@ function Commit() {
                                 <ul>
                                     <li>
                                         <em>
-                                            Hotline: <a href="tel:0706661234">070 666 1234</a>
+                                            Hotline: <a href="tel:0987654321">098 7654 321</a>
                                         </em>
                                     </li>
                                     <li>
                                         <em>
-                                            Telegram: <a href="https://t.me/thegioicode">@thegioicode</a>
+                                            Telegram: <a href="https://t.me/netcode">@netcode</a>
                                         </em>
                                     </li>
                                     <li>
                                         <em>
-                                            Email: <a href="mailto:support@thegioicode.com">support@thegioicode.com</a>
+                                            Email: <a href="mailto:support@Netcode.vn">support@netcode.vn</a>
                                         </em>
                                     </li>
                                 </ul>

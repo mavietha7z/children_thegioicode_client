@@ -13,7 +13,7 @@ function Source() {
     return (
         <Fragment>
             <Helmet>
-                <title>Thegioicode.com - Phần mềm mã nguồn</title>
+                <title>Netcode.vn - Phần mềm mã nguồn</title>
                 <meta
                     key="description"
                     name="description"
@@ -21,10 +21,10 @@ function Source() {
                 />
 
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href={`https://thegioicode.com${router.sources}`} />
-                <meta property="og:url" content={`https://thegioicode.com${router.sources}`} />
-                <meta property="og:title" content="Thegioicode - Phần mềm mã nguồn" />
-                <meta property="og:image" content="https://thegioicode.com/images/FiTPxMPpjZ.png" />
+                <link rel="canonical" href={`https://netcode.vn${router.sources}`} />
+                <meta property="og:url" content={`https://netcode.vn${router.sources}`} />
+                <meta property="og:title" content="Netcode - Phần mềm mã nguồn" />
+                <meta property="og:image" content="https://netcode.vn/images/FiTPxMPpjZ.png" />
                 <meta
                     property="og:description"
                     content="Phần mềm mã nguồn có sẵn miễn phí giúp tiết kiệm chi phí và rút ngắn thời gian xây dựng website."

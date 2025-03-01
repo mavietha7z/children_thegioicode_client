@@ -90,7 +90,7 @@ function ResizeInstance() {
 
     useEffect(() => {
         if (instance_id) {
-            document.title = `Thegioicode.com - #${instance_id}`;
+            document.title = `Netcode.vn - #${instance_id}`;
 
             const fetch = async () => {
                 const result = await requestUserGetProductResizeInstance(instance_id);

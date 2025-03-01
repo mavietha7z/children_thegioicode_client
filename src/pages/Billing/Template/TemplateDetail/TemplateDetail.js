@@ -21,7 +21,7 @@ function TemplateDetail() {
 
     useEffect(() => {
         if (template_id) {
-            document.title = `Thegioicode.com - #${template_id}`;
+            document.title = `Netcode.vn - #${template_id}`;
 
             const fetch = async () => {
                 const result = await requestUserGetTemplateDetail(template_id);

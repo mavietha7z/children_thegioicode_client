@@ -21,7 +21,7 @@ function ApiKey() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Apikey Dịch vụ đang sử dụng';
+        document.title = 'Netcode.vn - Apikey Dịch vụ đang sử dụng';
 
         const fetch = async () => {
             setLoading(true);

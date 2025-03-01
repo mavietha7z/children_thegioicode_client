@@ -66,7 +66,7 @@ function Instances() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Máy chủ đã tạo';
+        document.title = 'Netcode.vn - Máy chủ đã tạo';
 
         const fetch = async () => {
             setLoading(true);

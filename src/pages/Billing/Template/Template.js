@@ -25,7 +25,7 @@ function Template() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Đơn tạo website';
+        document.title = 'Netcode.vn - Đơn tạo website';
 
         const fetch = async () => {
             setLoading(true);

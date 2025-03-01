@@ -22,7 +22,7 @@ function Balance() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Biến động số dư';
+        document.title = 'Netcode.vn - Biến động số dư';
 
         const fetch = async () => {
             setLoading(true);

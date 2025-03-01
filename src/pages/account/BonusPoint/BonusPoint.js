@@ -30,7 +30,7 @@ function BonusPoint() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Điểm thưởng dịch vụ';
+        document.title = 'Netcode.vn - Điểm thưởng dịch vụ';
 
         const fetch = async () => {
             setLoading(true);

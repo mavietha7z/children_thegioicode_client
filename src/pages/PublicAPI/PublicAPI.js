@@ -41,7 +41,7 @@ function PublicAPI() {
     return (
         <Fragment>
             <Helmet>
-                <title>Thegioicode.com - Danh mục Public API</title>
+                <title>Netcode.vn - Danh mục Public API</title>
                 <meta
                     key="description"
                     name="description"
@@ -49,10 +49,10 @@ function PublicAPI() {
                 />
 
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href={`https://thegioicode.com${router.public_apis}`} />
-                <meta property="og:url" content={`https://thegioicode.com${router.public_apis}`} />
-                <meta property="og:title" content="Thegioicode.com - Danh mục Public API" />
-                <meta property="og:image" content="https://thegioicode.com/images/dLdWzlYEiC.png" />
+                <link rel="canonical" href={`https://netcode.vn${router.public_apis}`} />
+                <meta property="og:url" content={`https://netcode.vn${router.public_apis}`} />
+                <meta property="og:title" content="Netcode.vn - Danh mục Public API" />
+                <meta property="og:image" content="https://netcode.vn/images/dLdWzlYEiC.png" />
                 <meta
                     property="og:description"
                     content="Dịch vụ API giúp tiếp cận nhiều chức năng cho website, thuận tiện cho công việc của bạn..."

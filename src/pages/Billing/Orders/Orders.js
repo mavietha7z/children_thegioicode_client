@@ -24,7 +24,7 @@ function Orders() {
     const [modal, contextHolder] = Modal.useModal();
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Đơn hàng';
+        document.title = 'Netcode.vn - Đơn hàng';
 
         const fetch = async () => {
             setLoading(true);

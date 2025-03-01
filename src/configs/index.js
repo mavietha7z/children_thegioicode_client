@@ -102,7 +102,7 @@ export const configValidateDomain = (_, value) => {
     if (urlRegex.test(value)) {
         return Promise.resolve();
     } else {
-        return Promise.reject(new Error('Ví dụ: https://thegioicode.com'));
+        return Promise.reject(new Error('Ví dụ: https://netcode.vn'));
     }
 };
 

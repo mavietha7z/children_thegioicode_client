@@ -42,7 +42,7 @@ function Recharge() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Thanh toán';
+        document.title = 'Netcode.vn - Thanh toán';
 
         if (currentUser) {
             const fetch = async () => {

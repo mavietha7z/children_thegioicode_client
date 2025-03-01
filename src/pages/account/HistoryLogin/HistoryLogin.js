@@ -44,7 +44,7 @@ function HistoryLogin() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Lịch sử đăng nhập';
+        document.title = 'Netcode.vn - Lịch sử đăng nhập';
 
         const fetch = async () => {
             setLoading(true);

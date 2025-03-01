@@ -23,7 +23,7 @@ function TwoFactor() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Xác thực 2 bước';
+        document.title = 'Netcode.vn - Xác thực 2 bước';
 
         if (!currentUser) {
             navigate(router.home);

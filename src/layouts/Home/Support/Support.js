@@ -5,19 +5,19 @@ const data = [
         id: 2,
         title: 'Liên hệ qua Zalo',
         description: 'Liên hệ qua Zalo để được tư vấn',
-        link: 'https://zalo.me/0706661234',
+        link: 'https://zalo.me/0987654321',
     },
     {
         id: 1,
         title: 'Liên hệ qua Hotline',
         description: 'Liên hệ qua Hotline để được tư vấn',
-        link: 'tel:0706661234',
+        link: 'tel:0987654321',
     },
     {
         id: 3,
         title: 'Liên hệ qua Telegram',
         description: 'Liên hệ qua Telegram để được tư vấn',
-        link: 'https://t.me/thegioicode',
+        link: 'https://t.me/netcode',
     },
 ];
 

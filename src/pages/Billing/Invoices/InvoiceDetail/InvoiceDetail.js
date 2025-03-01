@@ -26,7 +26,7 @@ function InvoiceDetail() {
 
     useEffect(() => {
         if (invoice_id) {
-            document.title = `Thegioicode.com - #${invoice_id}`;
+            document.title = `Netcode.vn - #${invoice_id}`;
 
             const fetch = async () => {
                 const result = await requestUserGetInvoiceDetail(invoice_id);
@@ -349,7 +349,7 @@ function InvoiceDetail() {
                                                             style={{ fontSize: 18, width: 35, height: 35, lineHeight: 35 }}
                                                         />
                                                         <div>
-                                                            <span className="mr-2">Ví Thegioicode</span>
+                                                            <span className="mr-2">Ví Netcode</span>
                                                             <p className="text-primary mb-0 line-height-15 font-size-13">
                                                                 Số dư: {convertCurrency(currentUser?.wallet.total_balance)}
                                                             </p>
@@ -365,7 +365,7 @@ function InvoiceDetail() {
                                                         src={invoice.localbank?.logo_url || imageWallet}
                                                         style={{ fontSize: 18, width: 35, height: 35, lineHeight: 35 }}
                                                     />
-                                                    <span className="text-black">{invoice.localbank?.full_name || 'Ví Thegioicode'}</span>
+                                                    <span className="text-black">{invoice.localbank?.full_name || 'Ví Netcode'}</span>
                                                 </Flex>
                                             </div>
                                         )}

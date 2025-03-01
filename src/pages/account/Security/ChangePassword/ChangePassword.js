@@ -17,7 +17,7 @@ function ChangePassword() {
     const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        document.title = 'Thegioicode.com - Thay đổi mật khẩu';
+        document.title = 'Netcode.vn - Thay đổi mật khẩu';
 
         if (!currentUser) {
             navigate(router.home);

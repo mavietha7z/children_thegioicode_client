@@ -92,15 +92,15 @@ function SourceDetail() {
         <Fragment>
             {source && (
                 <Helmet>
-                    <title>Thegioicode.com - {source.title}</title>
+                    <title>Netcode.vn - {source.title}</title>
                     <meta key="description" name="description" content={`${source.description}`} />
 
                     <meta name="robots" content="index, follow" />
                     <meta property="og:image" content={`${source.image_url}`} />
-                    <link rel="canonical" href={`https://thegioicode.com${pathname}`} />
+                    <link rel="canonical" href={`https://netcode.vn${pathname}`} />
                     <meta property="og:description" content={`${source.description}`} />
-                    <meta property="og:url" content={`https://thegioicode.com${pathname}`} />
-                    <meta property="og:title" content={`Thegioicode.com - ${source.title}`} />
+                    <meta property="og:url" content={`https://netcode.vn${pathname}`} />
+                    <meta property="og:title" content={`Netcode.vn - ${source.title}`} />
                 </Helmet>
             )}
 
