@@ -89,7 +89,7 @@ function ApiKey() {
                     </Tooltip>
                     <span className="mx-1">/</span>
                     <Tooltip title="Tổng lượt dùng">
-                        <span className="text-info">{data.use}</span>
+                        <span className="text-info">{data.used}</span>
                     </Tooltip>
                 </Fragment>
             ),
@@ -125,7 +125,7 @@ function ApiKey() {
             title: 'Hành động',
             key: 'action',
             render: (data, record) => (
-                <Button size="small" type="primary" onClick={() => record.onExpand(record)}>
+                <Button type="primary" onClick={() => record.onExpand(record)}>
                     Cấu hình
                 </Button>
             ),
