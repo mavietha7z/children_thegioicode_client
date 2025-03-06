@@ -220,7 +220,7 @@ function TemplateDetail() {
                                                         },
                                                     ]}
                                                 >
-                                                    <Input size="large" placeholder="VD: Netcode.vn" />
+                                                    <Input size="large" placeholder="VD: netcode.vn" />
                                                 </Form.Item>
                                                 <div className="mb-4 mt-1 font-size-13">
                                                     Nếu bạn chưa có tên miền thể mua{' '}
@@ -244,7 +244,7 @@ function TemplateDetail() {
                                                         },
                                                     ]}
                                                 >
-                                                    <Input size="large" placeholder="VD: admin@Netcode.vn" />
+                                                    <Input size="large" placeholder="VD: admin@netcode.vn" />
                                                 </Form.Item>
                                             </Col>
                                             <Col md={24} xs={24}>
