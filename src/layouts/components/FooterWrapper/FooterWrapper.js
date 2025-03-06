@@ -28,7 +28,7 @@ function FooterWrapper() {
                                 </div>
                                 <div className="d-flex gap-2">
                                     <IconPhone size={20} />
-                                    <p className="mb-3">070 666 1234</p>
+                                    <p className="mb-3">0987 654 321</p>
                                 </div>
                                 <div className="d-flex gap-2">
                                     <IconBrandTelegram size={20} />
@@ -36,7 +36,7 @@ function FooterWrapper() {
                                 </div>
                                 <div className="d-flex gap-2 mb-4">
                                     <IconMail size={20} />
-                                    <p className="mb-3">Support@netcode.vn</p>
+                                    <p className="mb-3">noreply@netcode.vn</p>
                                 </div>
                                 <a href="/" target="_blank" rel="noreferrer">
                                     <img src={imageIconDmca} alt="" />

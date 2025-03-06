@@ -148,8 +148,8 @@ function DefaultLayout({ children }) {
                                 <h2 className="font-size-15">{websiteStatusReason}</h2>
                                 <p className="text-subtitle mt-2">
                                     <span className="mr-1">Contact:</span>
-                                    <a className="text-subtitle hover-blue" href="mailto:support@Netcode.vn">
-                                        support@Netcode.vn
+                                    <a className="text-subtitle hover-blue" href="mailto:noreply@netcode.vn">
+                                        noreply@netcode.vn
                                     </a>
                                 </p>
                             </div>

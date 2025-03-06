@@ -89,7 +89,7 @@ function Terms() {
                                         </li>
                                         <li>
                                             <em>
-                                                Email: <a href="mailto:support@Netcode.vn">support@netcode.vn</a>
+                                                Email: <a href="mailto:noreply@netcode.vn">noreply@netcode.vn</a>
                                             </em>
                                         </li>
                                     </ul>

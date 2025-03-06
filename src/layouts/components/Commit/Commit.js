@@ -129,7 +129,7 @@ function Commit() {
                         <ul>
                             <li>
                                 Để yêu cầu bồi thường trong các trường hợp Netcode không đạt được cam kết, khách hàng vui lòng email đến địa
-                                chỉ <a href="mailto:support@Netcode.vn">support@netcode.vn</a> Nếu yêu cầu bồi thường là hợp lệ, khoản tiền
+                                chỉ <a href="mailto:noreply@netcode.vn">noreply@netcode.vn</a> Nếu yêu cầu bồi thường là hợp lệ, khoản tiền
                                 đền bù cho quý khách sẽ được cộng vào tài khoản balance để sử dụng cho các lần thanh toán sau.
                             </li>
                             <li>
@@ -208,7 +208,7 @@ function Commit() {
                                     </li>
                                     <li>
                                         <em>
-                                            Email: <a href="mailto:support@Netcode.vn">support@netcode.vn</a>
+                                            Email: <a href="mailto:noreply@netcode.vn">noreply@netcode.vn</a>
                                         </em>
                                     </li>
                                 </ul>
