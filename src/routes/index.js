@@ -13,12 +13,10 @@ import PublicAPIDetail from '~/pages/PublicAPI/PublicAPIDetail';
 
 import ApiKey from '~/pages/account/ApiKey';
 import Profile from '~/pages/account/Profile';
-import General from '~/pages/account/General';
 import Security from '~/pages/account/Security';
 import BonusPoint from '~/pages/account/BonusPoint';
 import HistoryLogin from '~/pages/account/HistoryLogin';
 import TwoFactor from '~/pages/account/Security/TwoFactor';
-import UserNotification from '~/pages/account/Notification';
 import ChangePassword from '~/pages/account/Security/ChangePassword';
 
 import Source from '~/pages/Source';
@@ -43,8 +41,6 @@ import TemplateDetail from '~/pages/Template/TemplateDetail';
 
 import RefProfile from '~/components/RefProfile';
 
-import ProxyServer from '~/pages/ProxyServer';
-
 import CloudServer from '~/pages/CloudServer';
 
 import Terms from '~/layouts/components/Terms';
@@ -62,7 +58,6 @@ export const privateRoutes = [
     { path: router.privacy, component: Privacy },
     { path: router.profile, component: Profile },
     { path: router.user, component: RefProfile },
-    { path: router.general, component: General },
     { path: router.billing, component: Recharge },
     { path: router.security, component: Security },
     { path: router.templates, component: Template },
@@ -71,13 +66,11 @@ export const privateRoutes = [
     { path: router.billing_orders, component: Orders },
     { path: router.bonus_point, component: BonusPoint },
     { path: router.billing_balance, component: Balance },
-    { path: router.proxy_server, component: ProxyServer },
     { path: router.cloud_server, component: CloudServer },
     { path: router.billing_invoices, component: Invoices },
     { path: router.notifications, component: Notification },
     { path: router.history_login, component: HistoryLogin },
     { path: router.billing_instances, component: Instances },
-    { path: router.notification, component: UserNotification },
     { path: router.changePassword, component: ChangePassword },
     { path: router.billing_templates, component: BillingTemplate },
     { path: router.sources + '/:category', component: SourceCategory },

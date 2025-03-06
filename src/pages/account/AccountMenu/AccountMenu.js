@@ -1,7 +1,7 @@
 import { Menu } from 'antd';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { IconCrown, IconHistoryToggle, IconKey, IconNotification, IconSettings, IconShieldLock, IconUserCircle } from '@tabler/icons-react';
+import { IconCrown, IconHistoryToggle, IconKey, IconShieldLock, IconUserCircle } from '@tabler/icons-react';
 
 import router from '~/configs/routes';
 
@@ -19,9 +19,7 @@ const items = [
     getItem(<Link to={router.bonus_point}>Điểm thưởng</Link>, router.bonus_point, <IconCrown size={22} />),
     getItem(<Link to={router.apikey}>Apikey</Link>, router.apikey, <IconKey size={22} />),
     getItem(<Link to={router.security}>Bảo mật</Link>, router.security, <IconShieldLock size={22} />),
-    getItem(<Link to={router.notification}>Thông báo</Link>, router.notification, <IconNotification size={22} />),
     getItem(<Link to={router.history_login}>Lịch sử đăng nhập</Link>, router.history_login, <IconHistoryToggle size={22} />),
-    getItem(<Link to={router.general}>Cài đặt chung</Link>, router.general, <IconSettings size={22} />),
 ];
 
 function AccountMenu() {

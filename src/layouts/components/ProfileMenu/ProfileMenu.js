@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Divider, Dropdown, Flex, notification } from 'antd';
-import { IconAuth2fa, IconKey, IconNotification, IconPower, IconUserCircle } from '@tabler/icons-react';
+import { IconAuth2fa, IconKey, IconPower, IconUserCircle } from '@tabler/icons-react';
 
 import './ProfileMenu.css';
 import router from '~/configs/routes';
@@ -100,12 +100,6 @@ function ProfileMenu() {
                             <li className="profile__menu-item">
                                 <IconAuth2fa size={18} />
                                 <span className="profile__menu-title">Xác thực 2 bước</span>
-                            </li>
-                        </Link>
-                        <Link to={router.notification} className="w-full">
-                            <li className="profile__menu-item">
-                                <IconNotification size={18} />
-                                <span className="profile__menu-title">Cài đặt thông báo</span>
                             </li>
                         </Link>
                         <Divider style={{ margin: '4px 0' }} />

@@ -12,12 +12,10 @@ import iconPublicApi from '~/assets/image/icon_public-api.svg';
 import imageAvatarDefault from '~/assets/image/avatar-default.png';
 import imageCloudServer from '~/assets/image/icon-cloud_server.svg';
 import imageWebTemplate from '~/assets/image/icon-web-template.png';
-import imageProxyServer from '~/assets/image/icon-proxy-server.png';
 
 import imageCarouselSourceCode from '~/assets/image/carousel-source.svg';
 import imageCarouselPublicApi from '~/assets/image/carousel-public-api.svg';
 import imageCarouselCloudServer from '~/assets/image/carousel-cloud-server.png';
-import imageCarouselProxyServer from '~/assets/image/carousel-proxy-server.svg';
 
 const servicesData = [
     {
@@ -43,13 +41,6 @@ const servicesData = [
     },
     {
         id: 4,
-        title: 'Proxy Server',
-        description: 'Tiết kiệm băng thông và tăng tốc độ mạng',
-        link: router.proxy_server,
-        src: imageProxyServer,
-    },
-    {
-        id: 5,
         title: 'Public API',
         description: 'API giúp tiếp cận nhiều chức năng website',
         link: router.public_apis,
@@ -66,13 +57,6 @@ const carousels = [
         img_url: imageCarouselPublicApi,
     },
     {
-        title: 'Tài khoản',
-        description: 'Cung cấp nhiều loại tài khoản như TikTok, Fb, BM, Gmail cho mọi người làm mmo',
-        link_to: router.public_apis,
-        btn_text: 'Xem thử ngay',
-        img_url: imageCarouselSourceCode,
-    },
-    {
         title: 'Mã nguồn',
         description: 'Với kho giao diện lớn đảm bảo các giao diện giúp tiết kiệm chi phí và rút ngắn thời gian xây dựng website',
         link_to: router.sources,
@@ -85,14 +69,6 @@ const carousels = [
         link_to: router.templates,
         btn_text: 'Xem chi tiết',
         img_url: imageCarouselSourceCode,
-    },
-    {
-        title: 'Proxy Server',
-        description:
-            'Bảo mật dữ liệu và quyền riêng tư, đảm bảo tính sẵn sàng và hiệu suất cao, tiết kiệm băng thông và cải thiện tốc độ mạng',
-        link_to: router.proxy_server,
-        btn_text: 'Bắt đầu ngay',
-        img_url: imageCarouselProxyServer,
     },
     {
         title: 'Cloud Server',

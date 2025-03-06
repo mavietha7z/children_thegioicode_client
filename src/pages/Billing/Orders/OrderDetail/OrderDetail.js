@@ -126,9 +126,9 @@ function OrderDetail() {
             render: (data) => (
                 <Fragment>
                     {data.discount > 0 && (
-                        <div className="text-danger font-size-13 text-line-through text-right">{convertCurrency(data.unit_price)}</div>
+                        <div className="text-danger font-size-13 text-line-through">{convertCurrency(data.unit_price)}</div>
                     )}
-                    <div className="text-right font-size-15 font-bold">
+                    <div className="font-size-15 font-bold">
                         {convertCurrency(data.unit_price - (data.unit_price * data.quantity * data.discount) / 100)}
                     </div>
                 </Fragment>

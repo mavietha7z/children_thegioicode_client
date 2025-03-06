@@ -3,16 +3,7 @@ import { useSelector } from 'react-redux';
 import { isMobile } from 'react-device-detect';
 import { Avatar, Card, Flex, Tabs, Tooltip } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-    IconKey,
-    IconCrown,
-    IconSettings,
-    IconShieldLock,
-    IconUserCircle,
-    IconNotification,
-    IconHistoryToggle,
-    IconCircleCheckFilled,
-} from '@tabler/icons-react';
+import { IconKey, IconCrown, IconShieldLock, IconUserCircle, IconHistoryToggle, IconCircleCheckFilled } from '@tabler/icons-react';
 
 import './Account.css';
 import router from '~/configs/routes';
@@ -33,9 +24,7 @@ const items = [
     getItem(<span>Điểm thưởng</span>, router.bonus_point, <IconCrown size={22} />),
     getItem(<span>Apikey</span>, router.apikey, <IconKey size={22} />),
     getItem(<span>Bảo mật</span>, router.security, <IconShieldLock size={22} />),
-    getItem(<span>Thông báo</span>, router.notification, <IconNotification size={22} />),
     getItem(<span>Lịch sử đăng nhập</span>, router.history_login, <IconHistoryToggle size={22} />),
-    getItem(<span>Cài đặt chung</span>, router.general, <IconSettings size={22} />),
 ];
 
 function Account({ children }) {

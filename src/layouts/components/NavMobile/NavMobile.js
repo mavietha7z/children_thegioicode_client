@@ -12,14 +12,12 @@ import {
     IconCrown,
     IconServer2,
     IconTemplate,
-    IconSettings,
     IconSourceCode,
     IconUserCircle,
     IconShieldLock,
     IconHomeDollar,
     IconShoppingBag,
     IconFileInvoice,
-    IconNotification,
     IconHistoryToggle,
 } from '@tabler/icons-react';
 
@@ -67,9 +65,7 @@ const menus = [
             { icon: <IconCrown size={35} />, title: 'Điểm thưởng', path: router.bonus_point },
             { icon: <IconKey size={35} />, title: 'Apikey', path: router.apikey },
             { icon: <IconShieldLock size={35} />, title: 'Bảo mật', path: router.security },
-            { icon: <IconNotification size={35} />, title: 'Thông báo', path: router.notification },
             { icon: <IconHistoryToggle size={35} />, title: 'Lịch sử đăng nhập', path: router.history_login },
-            { icon: <IconSettings size={35} />, title: 'Cài đặt chung', path: router.general },
         ],
     },
 ];

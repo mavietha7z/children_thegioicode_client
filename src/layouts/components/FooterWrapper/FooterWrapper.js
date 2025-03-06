@@ -55,22 +55,12 @@ function FooterWrapper() {
                                         </li>
                                         <li>
                                             <p className="mb-3">
-                                                <Link to={router.resources}>Tài khoản</Link>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p className="mb-3">
                                                 <Link to={router.sources}>Mã nguồn</Link>
                                             </p>
                                         </li>
                                         <li>
                                             <p className="mb-3">
                                                 <Link to={router.templates}>Tạo website</Link>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p className="mb-3">
-                                                <Link to={router.proxy_server}>Proxy Server</Link>
                                             </p>
                                         </li>
                                         <li>
