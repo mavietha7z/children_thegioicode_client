@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     IconCpu,
     IconCopy,
-    IconLock,
     IconDots,
     IconPower,
     IconResize,
@@ -179,11 +178,6 @@ function InstanceDetail() {
             label: <Link to={`${router.billing_instances}/${instance_id}/resize`}>Thay đổi cấu hình</Link>,
             key: '2',
             icon: <IconResize width={20} height={20} />,
-        },
-        {
-            label: <div>Thay đổi mật khẩu</div>,
-            key: '3',
-            icon: <IconLock width={20} height={20} />,
         },
     ];
 

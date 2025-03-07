@@ -5,7 +5,6 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
     IconDots,
     IconEdit,
-    IconLock,
     IconPower,
     IconCancel,
     IconResize,
@@ -443,11 +442,6 @@ function Instances() {
                             label: <Link to={`${router.billing_instances}/${data.id}/resize`}>Thay đổi cấu hình</Link>,
                             key: '2',
                             icon: <IconResize width={20} height={20} />,
-                        },
-                        {
-                            label: <div>Thay đổi mật khẩu</div>,
-                            key: '3',
-                            icon: <IconLock width={20} height={20} />,
                         },
                     );
                 }
