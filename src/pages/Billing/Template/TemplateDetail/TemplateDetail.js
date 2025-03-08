@@ -270,7 +270,7 @@ function TemplateDetail() {
                                             <Flex justify="space-between" className="py-2 border-bottom border-b-dashed">
                                                 <span className="font-bold">Chiết khấu</span>
                                                 <span className="font-bold text-danger">
-                                                    -{convertCurrency(template.total_price - template.total_payment)}
+                                                    {convertCurrency(template.total_payment - template.total_price)}
                                                 </span>
                                             </Flex>
                                             <Flex justify="space-between" className="py-2 border-bottom border-b-dashed">

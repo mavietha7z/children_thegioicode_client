@@ -67,7 +67,7 @@ function DefaultLayout({ children }) {
             '%cNếu bạn cố tình bị phát hiện sẽ bị khoá toàn khoản và chặn truy cập vĩnh viễn!',
             'color:#29c4a9;font-size:14px;font-weight:600',
         );
-        console.log('%cCopyright © Netcode', 'color:#096eff;font-size:16px;font-weight:600');
+        console.log('%cCopyright © Thegioicode.com', 'color:#096eff;font-size:16px;font-weight:600');
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
