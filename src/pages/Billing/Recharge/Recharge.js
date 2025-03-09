@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { IconCopy } from '@tabler/icons-react';
 import { BankOutlined } from '@ant-design/icons';
 import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Card, Col, Flex, Image, Input, Radio, Row, Spin, Tooltip, notification } from 'antd';
+import { IconCheck, IconCopy } from '@tabler/icons-react';
+import { Avatar, Button, Card, Col, Flex, Form, Image, Input, Radio, Row, Select, Spin, Tooltip, notification } from 'antd';
 
 import Billing from '../Billing';
 import router from '~/configs/routes';
@@ -12,9 +12,9 @@ import { serviceCopyKeyBoard } from '~/configs';
 import IconQuestion from '~/assets/icon/IconQuestion';
 import IconRecharge from '~/assets/icon/IconRecharge';
 import { logoutUserSuccess } from '~/redux/reducer/auth';
-import { requestUserGetRecharge } from '~/services/billing';
+import { requestUserGetRecharge, requestUserRechargeCharging } from '~/services/billing';
 
-const defaultAmounts = [50000, 100000, 200000, 500000, 1000000];
+const defaultAmounts = [10000, 20000, 50000, 100000, 200000, 500000, 1000000];
 
 const formatNumber = (num) => {
     if (!num) return '0';
@@ -24,6 +24,7 @@ const formatNumber = (num) => {
 
 function Recharge() {
     const [loading, setLoading] = useState(false);
+    const [loadingRecharge, setLoadingRecharge] = useState(false);
     const [validateOtherAmount, setValidateOtherAmount] = useState('Số tiền nhập phải là bội của 1,000đ');
 
     const [value, setValue] = useState(-1);
@@ -36,6 +37,7 @@ function Recharge() {
     const [amountQr, setAmountQr] = useState(() => amounts[dataActive]);
     const [amountBill, setAmountBill] = useState(() => formatNumber(amounts[dataActive]));
 
+    const [form] = Form.useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { configs } = useSelector((state) => state.apps);
@@ -49,6 +51,7 @@ function Recharge() {
                 setLoading(true);
                 const result = await requestUserGetRecharge();
 
+                setLoading(false);
                 if (result.status === 401 || result.status === 403) {
                     dispatch(logoutUserSuccess());
                     navigate(router.home);
@@ -61,7 +64,6 @@ function Recharge() {
                         description: result?.error || 'Lỗi hệ thống vui lòng thử lại sau',
                     });
                 }
-                setLoading(false);
             };
             fetch();
         }
@@ -76,8 +78,8 @@ function Recharge() {
     const handleSelectWallet = (wallet) => {
         const amounts = defaultAmounts.map((amount, index) => {
             return {
-                id: index,
                 amount,
+                id: index,
             };
         });
 
@@ -159,6 +161,35 @@ function Recharge() {
         setAmountQr(amount);
         setAmount(formattedInput);
         setAmountBill(formattedInput);
+    };
+
+    const handleRechargeCard = async (values) => {
+        setLoadingRecharge(true);
+
+        const data = {
+            ...values,
+            amount: amountQr,
+        };
+
+        const result = await requestUserRechargeCharging(data);
+
+        setLoadingRecharge(false);
+        if (result.status === 401 || result.status === 403) {
+            dispatch(logoutUserSuccess());
+            navigate(router.home);
+        } else if (result?.status === 200) {
+            form.resetFields();
+
+            notification.success({
+                message: 'Thông báo',
+                description: result.message,
+            });
+        } else {
+            notification.error({
+                message: 'Thông báo',
+                description: result?.error || 'Lỗi hệ thống vui lòng thử lại sau',
+            });
+        }
     };
 
     return (
@@ -256,21 +287,23 @@ function Recharge() {
                                         </Col>
                                     ))}
 
-                                    <Col md={8} xs={24} style={{ padding: '0 8px' }} onClick={() => handleSelectAmount(6, 'other')}>
-                                        <div className="button_amount_billing" data-active={6 === dataActive}>
-                                            <Input
-                                                className="button_amount_billing-input"
-                                                value={amount}
-                                                onChange={handleChangeAmount}
-                                                suffix={<b>{amount !== 'Số khác' ? 'đ' : ''}</b>}
-                                            />
-                                        </div>
-                                        {amount !== 'Số khác' && (
-                                            <Fragment>
-                                                <div className="text-error mt-1">{validateOtherAmount}</div>
-                                            </Fragment>
-                                        )}
-                                    </Col>
+                                    {wallet.callback_code === 'bank_transfer' && (
+                                        <Col md={8} xs={24} style={{ padding: '0 8px' }} onClick={() => handleSelectAmount(6, 'other')}>
+                                            <div className="button_amount_billing" data-active={6 === dataActive}>
+                                                <Input
+                                                    className="button_amount_billing-input"
+                                                    value={amount}
+                                                    onChange={handleChangeAmount}
+                                                    suffix={<b>{amount !== 'Số khác' ? 'đ' : ''}</b>}
+                                                />
+                                            </div>
+                                            {amount !== 'Số khác' && (
+                                                <Fragment>
+                                                    <div className="text-error mt-1">{validateOtherAmount}</div>
+                                                </Fragment>
+                                            )}
+                                        </Col>
+                                    )}
                                 </Fragment>
                             </Row>
                         ) : (
@@ -294,7 +327,7 @@ function Recharge() {
                                         <Flex align="center" justify="space-between" className="pt-2 border-top border-white">
                                             <div className="text-subtitle">Thành tiền</div>
                                             <div className="text-primary font-bold font-size-20">
-                                                {formatNumber(amountQr)}
+                                                {formatNumber(amountQr - (amountQr * wallet.discount) / 100)}
                                                 <sup>đ</sup>
                                             </div>
                                         </Flex>
@@ -304,8 +337,17 @@ function Recharge() {
                                                 <h2 className="font-size-18 font-semibold mb-0 white-space-break">
                                                     <div className="white-space-break font-semibold font-size-16">{wallet.name}</div>
                                                     <p className="mb-0 white-space-break font-size-12 text-italic text-subtitle">
-                                                        Quý khách vui lòng quét mã QR hoặc chuyển khoản đúng nội dụng theo một trong các
-                                                        ngân hàng, ví điện tử bên dưới
+                                                        {wallet.callback_code === 'bank_transfer' ? (
+                                                            <Fragment>
+                                                                Quý khách vui lòng quét mã QR hoặc chuyển khoản đúng nội dụng theo một trong
+                                                                các ngân hàng, ví điện tử bên dưới
+                                                            </Fragment>
+                                                        ) : (
+                                                            <Fragment>
+                                                                Quý khách nạp tiền bằng thẻ cào sẽ bị chiết khấu {wallet.discount}% trên
+                                                                mệnh giá quý khách thực hiện lệnh nạp
+                                                            </Fragment>
+                                                        )}
                                                     </p>
                                                 </h2>
                                             }
@@ -325,145 +367,226 @@ function Recharge() {
                                                                 <div className="font-semibold">{option.name}</div>
                                                             </Flex>
 
-                                                            <Row style={{ margin: '0 -6px', rowGap: 12 }}>
-                                                                <Col md={12} xs={24} style={{ padding: '0 6px' }}>
-                                                                    <Flex justify="center" align="center" className="h-full">
-                                                                        {option.type === 'bank' ? (
-                                                                            <Image
-                                                                                src={`https://img.vietqr.io/image/${option.interbank_code}-${option.account_number}-oKRSYFw.jpg?amount=${amountQr}&addInfo=NAP ${currentUser?.id}&accountName=${option.account_holder}`}
-                                                                                alt="QR Thanh toán ngân hàng"
-                                                                                style={{
-                                                                                    width: '100%',
-                                                                                    height: '100%',
-                                                                                    objectFit: 'contain',
-                                                                                    maxWidth: 240,
-                                                                                    filter: option.status ? 'none' : 'blur(3px)',
-                                                                                }}
-                                                                                preview={option.status}
-                                                                                className="border-primary rounded"
-                                                                            />
-                                                                        ) : (
-                                                                            <Image
-                                                                                src={`https://momofree.apimienphi.com/api/QRCode?phone=${option.account_number}&amount=${amountQr}`}
-                                                                                alt="QR Thanh toán momo"
-                                                                                style={{
-                                                                                    width: '100%',
-                                                                                    height: '100%',
-                                                                                    objectFit: 'contain',
-                                                                                    maxWidth: 240,
-                                                                                    filter: option.status ? 'none' : 'blur(3px)',
-                                                                                }}
-                                                                                preview={option.status}
-                                                                                className="border-primary rounded"
-                                                                            />
-                                                                        )}
-                                                                    </Flex>
-                                                                </Col>
-                                                                <Col md={12} xs={24} style={{ padding: '0 6px' }}>
-                                                                    <Flex
-                                                                        justify="space-between"
-                                                                        align="center"
-                                                                        className="border-bottom pb-1"
-                                                                    >
-                                                                        <div>
-                                                                            <div className="text-subtitle font-size-xs-13">
-                                                                                Số tài khoản
+                                                            {wallet.callback_code === 'bank_transfer' ? (
+                                                                <Row style={{ margin: '0 -6px', rowGap: 12 }}>
+                                                                    <Col md={12} xs={24} style={{ padding: '0 6px' }}>
+                                                                        <Flex justify="center" align="center" className="h-full">
+                                                                            {option.type === 'bank' ? (
+                                                                                <Image
+                                                                                    src={`https://img.vietqr.io/image/${option.interbank_code}-${option.account_number}-oKRSYFw.jpg?amount=${amountQr}&addInfo=NAP ${currentUser?.id}&accountName=${option.account_holder}`}
+                                                                                    alt="QR Thanh toán ngân hàng"
+                                                                                    style={{
+                                                                                        width: '100%',
+                                                                                        height: '100%',
+                                                                                        objectFit: 'contain',
+                                                                                        maxWidth: 240,
+                                                                                        filter: option.status ? 'none' : 'blur(3px)',
+                                                                                    }}
+                                                                                    preview={option.status}
+                                                                                    className="border-primary rounded"
+                                                                                />
+                                                                            ) : (
+                                                                                <Image
+                                                                                    src={`https://momofree.apimienphi.com/api/QRCode?phone=${option.account_number}&amount=${amountQr}`}
+                                                                                    alt="QR Thanh toán momo"
+                                                                                    style={{
+                                                                                        width: '100%',
+                                                                                        height: '100%',
+                                                                                        objectFit: 'contain',
+                                                                                        maxWidth: 240,
+                                                                                        filter: option.status ? 'none' : 'blur(3px)',
+                                                                                    }}
+                                                                                    preview={option.status}
+                                                                                    className="border-primary rounded"
+                                                                                />
+                                                                            )}
+                                                                        </Flex>
+                                                                    </Col>
+                                                                    <Col md={12} xs={24} style={{ padding: '0 6px' }}>
+                                                                        <Flex
+                                                                            justify="space-between"
+                                                                            align="center"
+                                                                            className="border-bottom pb-1"
+                                                                        >
+                                                                            <div>
+                                                                                <div className="text-subtitle font-size-xs-13">
+                                                                                    Số tài khoản
+                                                                                </div>
+                                                                                <div className="font-bold font-size-xs-13 line-height-18 box-center">
+                                                                                    <span className="mr-2">
+                                                                                        {!option.status
+                                                                                            ? 'Đang bảo trì'
+                                                                                            : option.account_number}
+                                                                                    </span>
+                                                                                    {option.status && (
+                                                                                        <Tooltip title="Sao chép">
+                                                                                            <IconCopy
+                                                                                                size={16}
+                                                                                                style={{ cursor: 'pointer' }}
+                                                                                                onClick={() =>
+                                                                                                    serviceCopyKeyBoard(
+                                                                                                        option.account_number,
+                                                                                                    )
+                                                                                                }
+                                                                                            />
+                                                                                        </Tooltip>
+                                                                                    )}
+                                                                                </div>
                                                                             </div>
-                                                                            <div className="font-bold font-size-xs-13 line-height-18 box-center">
-                                                                                <span className="mr-2">
-                                                                                    {!option.status
-                                                                                        ? 'Đang bảo trì'
-                                                                                        : option.account_number}
-                                                                                </span>
-                                                                                {option.status && (
-                                                                                    <Tooltip title="Sao chép">
-                                                                                        <IconCopy
-                                                                                            size={16}
-                                                                                            style={{ cursor: 'pointer' }}
-                                                                                            onClick={() =>
-                                                                                                serviceCopyKeyBoard(option.account_number)
-                                                                                            }
-                                                                                        />
-                                                                                    </Tooltip>
-                                                                                )}
+                                                                        </Flex>
+                                                                        <Flex
+                                                                            justify="space-between"
+                                                                            align="center"
+                                                                            className="border-bottom pb-1"
+                                                                        >
+                                                                            <div>
+                                                                                <div className="text-subtitle font-size-xs-13">
+                                                                                    Tên tài khoản
+                                                                                </div>
+                                                                                <div className="font-bold font-size-xs-13 line-height-18">
+                                                                                    <span className="mr-3">
+                                                                                        {!option.status
+                                                                                            ? 'Đang bảo trì'
+                                                                                            : option.account_holder}
+                                                                                    </span>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </Flex>
-                                                                    <Flex
-                                                                        justify="space-between"
-                                                                        align="center"
-                                                                        className="border-bottom pb-1"
-                                                                    >
-                                                                        <div>
-                                                                            <div className="text-subtitle font-size-xs-13">
-                                                                                Tên tài khoản
+                                                                        </Flex>
+                                                                        <Flex
+                                                                            justify="space-between"
+                                                                            align="center"
+                                                                            className="border-bottom pb-1"
+                                                                        >
+                                                                            <div>
+                                                                                <div className="text-subtitle font-size-xs-13">Số tiền</div>
+                                                                                <div className="font-bold font-size-xs-13 line-height-18 box-center">
+                                                                                    <span className="mr-2">
+                                                                                        {!option.status
+                                                                                            ? 'Đang bảo trì'
+                                                                                            : `${formatNumber(amountQr)} VNĐ`}
+                                                                                    </span>
+                                                                                    {option.status && (
+                                                                                        <Tooltip title="Sao chép">
+                                                                                            <IconCopy
+                                                                                                size={16}
+                                                                                                style={{ cursor: 'pointer' }}
+                                                                                                onClick={() =>
+                                                                                                    serviceCopyKeyBoard(amountQr)
+                                                                                                }
+                                                                                            />
+                                                                                        </Tooltip>
+                                                                                    )}
+                                                                                </div>
                                                                             </div>
-                                                                            <div className="font-bold font-size-xs-13 line-height-18">
-                                                                                <span className="mr-3">
-                                                                                    {!option.status
-                                                                                        ? 'Đang bảo trì'
-                                                                                        : option.account_holder}
-                                                                                </span>
+                                                                        </Flex>
+                                                                        <Flex justify="space-between" align="center" className="pb-1">
+                                                                            <div>
+                                                                                <div className="text-subtitle font-size-xs-13">
+                                                                                    Nội dung chuyển khoản
+                                                                                </div>
+                                                                                <div className="font-bold font-size-xs-13 line-height-18 d-flex align-items-center">
+                                                                                    <span className="mr-2">
+                                                                                        {!option.status
+                                                                                            ? 'Đang bảo trì'
+                                                                                            : ` NAP ${currentUser?.id}`}
+                                                                                    </span>
+                                                                                    {option.status && (
+                                                                                        <Tooltip title="Sao chép">
+                                                                                            <IconCopy
+                                                                                                size={16}
+                                                                                                style={{ cursor: 'pointer' }}
+                                                                                                onClick={() =>
+                                                                                                    serviceCopyKeyBoard(
+                                                                                                        `NAP ${currentUser?.id}`,
+                                                                                                    )
+                                                                                                }
+                                                                                            />
+                                                                                        </Tooltip>
+                                                                                    )}
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </Flex>
-                                                                    <Flex
-                                                                        justify="space-between"
-                                                                        align="center"
-                                                                        className="border-bottom pb-1"
-                                                                    >
-                                                                        <div>
-                                                                            <div className="text-subtitle font-size-xs-13">Số tiền</div>
-                                                                            <div className="font-bold font-size-xs-13 line-height-18 box-center">
-                                                                                <span className="mr-2">
-                                                                                    {!option.status
-                                                                                        ? 'Đang bảo trì'
-                                                                                        : `${formatNumber(amountQr)} VNĐ`}
-                                                                                </span>
-                                                                                {option.status && (
-                                                                                    <Tooltip title="Sao chép">
-                                                                                        <IconCopy
-                                                                                            size={16}
-                                                                                            style={{ cursor: 'pointer' }}
-                                                                                            onClick={() => serviceCopyKeyBoard(amountQr)}
-                                                                                        />
-                                                                                    </Tooltip>
-                                                                                )}
-                                                                            </div>
-                                                                        </div>
-                                                                    </Flex>
-                                                                    <Flex justify="space-between" align="center" className="pb-1">
-                                                                        <div>
-                                                                            <div className="text-subtitle font-size-xs-13">
-                                                                                Nội dung chuyển khoản
-                                                                            </div>
-                                                                            <div className="font-bold font-size-xs-13 line-height-18 d-flex align-items-center">
-                                                                                <span className="mr-2">
-                                                                                    {!option.status
-                                                                                        ? 'Đang bảo trì'
-                                                                                        : ` NAP ${currentUser?.id}`}
-                                                                                </span>
-                                                                                {option.status && (
-                                                                                    <Tooltip title="Sao chép">
-                                                                                        <IconCopy
-                                                                                            size={16}
-                                                                                            style={{ cursor: 'pointer' }}
-                                                                                            onClick={() =>
-                                                                                                serviceCopyKeyBoard(
-                                                                                                    `NAP ${currentUser?.id}`,
-                                                                                                )
-                                                                                            }
-                                                                                        />
-                                                                                    </Tooltip>
-                                                                                )}
-                                                                            </div>
-                                                                        </div>
-                                                                    </Flex>
-                                                                </Col>
-                                                                <Col span={24}>
-                                                                    <div className="w-full my-1 border-top border-t-dashed"></div>
-                                                                </Col>
-                                                            </Row>
+                                                                        </Flex>
+                                                                    </Col>
+                                                                    <Col span={24}>
+                                                                        <div className="w-full my-1 border-top border-t-dashed"></div>
+                                                                    </Col>
+                                                                </Row>
+                                                            ) : (
+                                                                <Fragment>
+                                                                    <Form layout="vertical" form={form} onFinish={handleRechargeCard}>
+                                                                        <Row gutter={16}>
+                                                                            <Col span={24}>
+                                                                                <Form.Item
+                                                                                    name="telco"
+                                                                                    label="Loại thẻ"
+                                                                                    className="mb-2"
+                                                                                    rules={[
+                                                                                        {
+                                                                                            required: true,
+                                                                                            message: 'Vui lòng chọn loại thẻ',
+                                                                                        },
+                                                                                    ]}
+                                                                                >
+                                                                                    <Select
+                                                                                        placeholder="Chọn loại thẻ"
+                                                                                        options={[
+                                                                                            { label: 'VIETTEL', value: 'VIETTEL' },
+                                                                                            { label: 'GARENA', value: 'GARENA' },
+                                                                                            { label: 'MOBIFONE', value: 'MOBIFONE' },
+                                                                                            { label: 'VINAPHONE', value: 'VINAPHONE' },
+                                                                                            {
+                                                                                                label: 'VIETNAMOBILE',
+                                                                                                value: 'VIETNAMOBILE',
+                                                                                            },
+                                                                                        ]}
+                                                                                    />
+                                                                                </Form.Item>
+                                                                            </Col>
+                                                                            <Col span={24}>
+                                                                                <Form.Item
+                                                                                    name="code"
+                                                                                    label="Mã thẻ"
+                                                                                    className="mb-2"
+                                                                                    rules={[
+                                                                                        {
+                                                                                            required: true,
+                                                                                            message: 'Vui lòng nhập mã thẻ',
+                                                                                        },
+                                                                                    ]}
+                                                                                >
+                                                                                    <Input placeholder="Mã thẻ" />
+                                                                                </Form.Item>
+                                                                            </Col>
+                                                                            <Col span={24}>
+                                                                                <Form.Item
+                                                                                    name="serial"
+                                                                                    label="Serial thẻ"
+                                                                                    className="mb-2"
+                                                                                    rules={[
+                                                                                        {
+                                                                                            required: true,
+                                                                                            message: 'Vui lòng nhập serial thẻ',
+                                                                                        },
+                                                                                    ]}
+                                                                                >
+                                                                                    <Input placeholder="Serial thẻ" />
+                                                                                </Form.Item>
+                                                                            </Col>
+                                                                        </Row>
+
+                                                                        <Button
+                                                                            type="primary"
+                                                                            htmlType="submit"
+                                                                            block
+                                                                            className="mt-4 box-center"
+                                                                            icon={<IconCheck size={18} />}
+                                                                            loading={loadingRecharge}
+                                                                        >
+                                                                            Nạp ngay
+                                                                        </Button>
+                                                                    </Form>
+                                                                </Fragment>
+                                                            )}
                                                         </Col>
                                                     ))
                                                 ) : (

@@ -10,6 +10,16 @@ export const requestUserGetRecharge = async () => {
     }
 };
 
+export const requestUserRechargeCharging = async (data) => {
+    try {
+        const res = await request.post('/my/billings/recharge/chargingws', data);
+
+        return res.data;
+    } catch (error) {
+        return error.response?.data;
+    }
+};
+
 export const requestUserGetBalances = async (page) => {
     try {
         const res = await request.get('/my/billings/balances', {
