@@ -1,0 +1,195 @@
+.widget-wrapper {
+    z-index: 999999999;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding-bottom: 30px;
+    padding-right: 30px;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+.chat-widget {
+    position: relative;
+    align-items: end;
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-widget {
+    width: 50px;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px, rgba(0, 0, 0, 0.2) 0px 2px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    cursor: pointer;
+    background-image: url('../../../assets/image/live-chat.svg');
+    background-size: contain;
+    backface-visibility: hidden;
+    border: 1px solid #0069ff;
+    position: relative;
+    margin-top: 15px;
+    user-select: none;
+}
+
+.toggle-widget:not(.active):before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    animation: ripple 1.5s infinite ease-in;
+    animation-delay: 0.5s;
+    border: 1px solid #0069ff;
+    user-select: none;
+}
+
+.toggle-widget:not(.active)::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    animation: ripple 1.5s infinite ease-in;
+    border: 1px solid #0069ff;
+    user-select: none;
+}
+
+.toggle-widget.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: invert(1) hue-rotate(180deg);
+    background-image: url('../../../assets/image/widget-close.svg');
+    background-position: center;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    animation: rotate 0.2s ease-in-out;
+}
+
+.toggle-widget.active {
+    background-color: #0069ff;
+    background-image: none;
+}
+
+.widget-container {
+    position: absolute;
+    bottom: 90px;
+    right: 30px;
+    flex-direction: column;
+    transform-origin: bottom right;
+    transform: scale(0) translateY(50px);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    height: 340px;
+    width: 350px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px, rgba(0, 0, 0, 0.2) 0px 2px 12px;
+    overflow: hidden;
+}
+
+.widget-container.d-flex {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.widget-header {
+    align-items: center;
+    border-bottom-width: 1px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    height: 64px;
+    justify-content: space-between;
+    padding: 0 15px 0 25px;
+}
+
+.widget-title {
+    flex: 1 1;
+    font-weight: 500;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+.widget-close {
+    border-radius: 3px;
+    height: 30px;
+    margin: 0 2px;
+    width: 30px;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.widget-close:hover {
+    background: rgba(0, 0, 0, 0.018);
+    border-color: transparent;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.widget-panel {
+    background-color: rgba(188, 209, 214, 0.28);
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.widget-panel-register {
+    height: 100%;
+    padding: 20px;
+    width: 100%;
+}
+
+.form-register {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow: auto;
+    padding: 25px;
+    width: 100%;
+}
+
+.form-register img {
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes ripple {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(45deg) scale(0.5);
+    }
+    100% {
+        transform: rotate(0) scale(1);
+    }
+}

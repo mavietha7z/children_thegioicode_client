@@ -11,6 +11,7 @@ import { convertCurrency } from '~/configs';
 import Account from '../components/Account';
 import imageLogo from '~/assets/image/logo.png';
 import NavMobile from '../components/NavMobile';
+import WidgetChat from '../components/WidgetChat';
 import NavComputer from '../components/NavComputer';
 import ProfileMenu from '../components/ProfileMenu';
 import Notification from '../components/Notification';
@@ -159,6 +160,8 @@ function DefaultLayout({ children }) {
                             {openAccount && moduleAccount && (
                                 <Account module={moduleAccount} setModule={setModuleAccount} onHide={setOpenAccount} />
                             )}
+
+                            <WidgetChat />
 
                             <Header
                                 className="default__header"

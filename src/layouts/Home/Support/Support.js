@@ -1,27 +1,30 @@
 import { Card } from 'antd';
-
-const data = [
-    {
-        id: 2,
-        title: 'Liên hệ qua Zalo',
-        description: 'Liên hệ qua Zalo để được tư vấn',
-        link: 'https://zalo.me/0987654321',
-    },
-    {
-        id: 1,
-        title: 'Liên hệ qua Hotline',
-        description: 'Liên hệ qua Hotline để được tư vấn',
-        link: 'tel:0987654321',
-    },
-    {
-        id: 3,
-        title: 'Liên hệ qua Telegram',
-        description: 'Liên hệ qua Telegram để được tư vấn',
-        link: 'https://t.me/netcode',
-    },
-];
+import { useSelector } from 'react-redux';
 
 function Support() {
+    const { configs } = useSelector((state) => state.apps);
+
+    const data = [
+        {
+            id: 2,
+            title: 'Liên hệ qua Zalo',
+            description: 'Liên hệ qua Zalo để được tư vấn',
+            link: `https://zalo.me/${configs?.contacts?.zalo_url}`,
+        },
+        {
+            id: 1,
+            title: 'Liên hệ qua Hotline',
+            description: 'Liên hệ qua Hotline để được tư vấn',
+            link: `tel:${configs?.contacts?.phone_number}`,
+        },
+        {
+            id: 3,
+            title: 'Liên hệ qua Telegram',
+            description: 'Liên hệ qua Telegram để được tư vấn',
+            link: `https://t.me/${configs?.contacts?.telegram_url}`,
+        },
+    ];
+
     return (
         <Card
             className="rounded-15 mb-4"
