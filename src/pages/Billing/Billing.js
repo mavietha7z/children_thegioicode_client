@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Card, notification, Tabs } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { IconFileInvoice, IconServer2, IconShoppingBag, IconTemplate } from '@tabler/icons-react';
+import { IconFileInvoice, IconServer2, IconShoppingBag, IconSourceCode, IconTemplate } from '@tabler/icons-react';
 
 import Orders from './Orders';
 import Balance from './Balance';
@@ -72,11 +72,21 @@ function Billing({ label, keyTab, children }) {
         {
             label: (
                 <span className="box-align-center gap-2 text-subtitle">
+                    <IconSourceCode size={20} />
+                    Đơn mã nguồn
+                </span>
+            ),
+            key: '5',
+            children: <Template />,
+        },
+        {
+            label: (
+                <span className="box-align-center gap-2 text-subtitle">
                     <IconTemplate size={20} />
                     Đơn tạo website
                 </span>
             ),
-            key: '5',
+            key: '6',
             children: <Template />,
         },
         {
@@ -86,7 +96,7 @@ function Billing({ label, keyTab, children }) {
                     Instances
                 </span>
             ),
-            key: '6',
+            key: '7',
             children: <Instances />,
         },
     ];
@@ -120,9 +130,12 @@ function Billing({ label, keyTab, children }) {
                 navigate(router.billing_invoices);
                 break;
             case '5':
-                navigate(router.billing_templates);
+                navigate(router.billing_sources);
                 break;
             case '6':
+                navigate(router.billing_templates);
+                break;
+            case '7':
                 navigate(router.billing_instances);
                 break;
             default:

@@ -1,8 +1,8 @@
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { IconArrowLeft, IconCreditCardPay, IconDownload, IconGift } from '@tabler/icons-react';
-import { Avatar, Breadcrumb, Button, Card, Col, Flex, Radio, Row, Space, Spin, Table, Tooltip, notification } from 'antd';
+import { IconArrowLeft, IconCreditCardPay, IconGift } from '@tabler/icons-react';
+import { Avatar, Breadcrumb, Button, Card, Col, Flex, Radio, Row, Space, Spin, Table, notification } from 'antd';
 
 import router from '~/configs/routes';
 import { convertCurrency } from '~/configs';
@@ -146,16 +146,6 @@ function OrderDetail() {
             render: (data) => (
                 <Flex align="center" justify="space-between">
                     <div className="font-size-15 font-bold">{convertCurrency(data.total_price)}</div>
-
-                    {data.data_url && (
-                        <Tooltip title="Tải dữ liệu">
-                            <a href={data.data_url} target="_blank" rel="noreferrer" className="ml-2">
-                                <Button type="primary" size="small" className="box-center">
-                                    <IconDownload size={16} />
-                                </Button>
-                            </a>
-                        </Tooltip>
-                    )}
                 </Flex>
             ),
         },

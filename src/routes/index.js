@@ -28,6 +28,7 @@ import Balance from '~/pages/Billing/Balance';
 import Recharge from '~/pages/Billing/Recharge';
 import Invoices from '~/pages/Billing/Invoices';
 import Instances from '~/pages/Billing/Instances';
+import BillingSource from '~/pages/Billing/Sources';
 import BillingTemplate from '~/pages/Billing/Template';
 import OrderDetail from '~/pages/Billing/Orders/OrderDetail';
 import InvoiceDetail from '~/pages/Billing/Invoices/InvoiceDetail';
@@ -71,6 +72,7 @@ export const privateRoutes = [
     { path: router.notifications, component: Notification },
     { path: router.history_login, component: HistoryLogin },
     { path: router.billing_instances, component: Instances },
+    { path: router.billing_sources, component: BillingSource },
     { path: router.changePassword, component: ChangePassword },
     { path: router.billing_templates, component: BillingTemplate },
     { path: router.sources + '/:category', component: SourceCategory },

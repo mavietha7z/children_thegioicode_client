@@ -1,19 +1,19 @@
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { Fragment, useEffect, useState } from 'react';
-import { IconFileInvoice } from '@tabler/icons-react';
+import { IconDownload, IconSourceCode } from '@tabler/icons-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { Button, Card, Empty, Flex, Pagination, Spin, Table, notification } from 'antd';
+import { Button, Card, Empty, Flex, Pagination, Spin, Table, Tooltip, notification } from 'antd';
 
 import Billing from '../Billing';
 import router from '~/configs/routes';
 import { convertCurrency } from '~/configs';
 import { logoutUserSuccess } from '~/redux/reducer/auth';
-import { requestUserGetInvoices } from '~/services/billing';
+import { requestUserGetBillingSources } from '~/services/billing';
 
-function Invoices() {
+function Sources() {
     const [pages, setPages] = useState(1);
-    const [invoices, setInvoices] = useState([]);
+    const [sources, setSources] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const [page, setPage] = useState(searchParams.get('page') || 1);
@@ -22,11 +22,11 @@ function Invoices() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.title = 'Netcode.vn - Hoá đơn';
+        document.title = 'Netcode.vn - Đơn mã nguồn';
 
         const fetch = async () => {
             setLoading(true);
-            const result = await requestUserGetInvoices(page);
+            const result = await requestUserGetBillingSources(page);
 
             setLoading(false);
             if (result.status === 401 || result.status === 403) {
@@ -35,7 +35,7 @@ function Invoices() {
                 notification.error({ message: 'Thông báo', description: 'Vui lòng đăng nhập để tiếp tục' });
             } else if (result?.status === 200) {
                 setPages(result.pages);
-                setInvoices(result.data);
+                setSources(result.data);
             } else {
                 notification.error({
                     message: 'Thông báo',
@@ -48,10 +48,6 @@ function Invoices() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
-    const handleNavigateDetail = (invoice_id) => {
-        navigate(`${router.billing_invoices}/${invoice_id}`);
-    };
-
     const columns = [
         {
             title: 'STT',
@@ -60,33 +56,45 @@ function Invoices() {
             render: (index) => <b>{index}</b>,
         },
         {
-            title: 'Mã hóa đơn',
+            title: 'Mã đơn',
             dataIndex: 'id',
             key: 'id',
-            render: (id) => (
-                <Link to={`${router.billing_invoices}/${id}`} className="hover-underline">
-                    #{id}
+            render: (id) => `#${id}`,
+        },
+        {
+            title: 'Mã hóa đơn',
+            dataIndex: 'invoice_id',
+            key: 'invoice_id',
+            render: (invoice_id) => (
+                <Link to={`${router.billing_invoices}/${invoice_id}`} className="hover-underline">
+                    #{invoice_id}
                 </Link>
             ),
         },
         {
-            title: 'Số tiền',
-            dataIndex: 'total_payment',
-            key: 'total_payment',
-            render: (total_payment) => {
-                let className = '';
-                let title = `${convertCurrency(total_payment)}`;
-                if (total_payment > 0) {
-                    className = 'text-success';
-                    title = `+${convertCurrency(total_payment)}`;
-                }
-                if (total_payment < 0) {
-                    className = 'text-danger';
-                    title = `${convertCurrency(total_payment)}`;
-                }
-
-                return <span className={className}>{title}</span>;
+            title: 'Mã nguồn',
+            key: 'source',
+            render: (data) => {
+                return (
+                    <Link to={router.sources + `/detail/${data.source.slug_url}`} className="hover-underline">
+                        {data.source.title}
+                    </Link>
+                );
             },
+        },
+        {
+            title: 'Số tiền',
+            key: 'unit_price',
+            render: (data) => (
+                <Fragment>
+                    {data.discount > 0 && (
+                        <div className="text-danger font-size-13 text-line-through">{convertCurrency(data.unit_price)}</div>
+                    )}
+                    <div className="font-size-15">
+                        {convertCurrency(data.unit_price - (data.unit_price * data.quantity * data.discount) / 100)}
+                    </div>
+                </Fragment>
+            ),
         },
         {
             title: 'Trạng thái',
@@ -116,43 +124,35 @@ function Invoices() {
             },
         },
         {
-            title: 'Ngày tạo',
+            title: 'Ngày mua',
             dataIndex: 'created_at',
             key: 'created_at',
             render: (created_at) => <Fragment>{moment(created_at).format('DD/MM/YYYY HH:mm:ss')}</Fragment>,
         },
         {
-            title: 'Ngày đáo hạn',
-            dataIndex: 'expired_at',
-            key: 'expired_at',
-            render: (expired_at) => <Fragment>{moment(expired_at).format('DD/MM/YYYY HH:mm:ss')}</Fragment>,
-        },
-        {
-            title: 'Nội dung',
-            dataIndex: 'description',
-            key: 'description',
-        },
-        {
             title: '',
             key: 'action',
-            render: (data) =>
-                data.status === 'pending' && (
-                    <Flex align="center" justify="end">
-                        <Button className="box-center" type="primary" onClick={() => handleNavigateDetail(data.id)}>
-                            Thanh toán
-                        </Button>
-                    </Flex>
-                ),
+            render: (data) => (
+                <Flex align="center" justify="end">
+                    <Tooltip title="Tải xuống dữ liệu">
+                        <a href={data.data_url} target="_blank" rel="noreferrer" className="ml-2">
+                            <Button type="primary" size="small" className="box-center">
+                                <IconDownload size={16} />
+                            </Button>
+                        </a>
+                    </Tooltip>
+                </Flex>
+            ),
         },
     ];
 
     return (
         <Billing
-            keyTab="4"
+            keyTab="5"
             label={
                 <span className="box-align-center gap-2 text-subtitle">
-                    <IconFileInvoice size={20} />
-                    Hoá đơn
+                    <IconSourceCode size={20} />
+                    Đơn mã nguồn
                 </span>
             }
         >
@@ -160,17 +160,13 @@ function Invoices() {
                 <Flex align="center" justify="center" style={{ minHeight: '68vh' }}>
                     <Spin />
                 </Flex>
-            ) : invoices.length > 0 ? (
+            ) : sources.length > 0 ? (
                 <Card styles={{ body: { padding: 0 } }}>
-                    <Table
-                        columns={columns}
-                        dataSource={invoices.map((invoice, index) => ({ key: index, ...invoice }))}
-                        pagination={false}
-                    />
+                    <Table columns={columns} dataSource={sources.map((source, index) => ({ key: index, ...source }))} pagination={false} />
                 </Card>
             ) : (
                 <Flex justify="center" align="center" style={{ minHeight: 'calc(-260px + 100vh)' }}>
-                    <Empty description={<p className="text-subtitle">Không có dữ liệu hoá đơn</p>} />
+                    <Empty description={<p className="text-subtitle">Không có dữ liệu đơn mã nguồn</p>} />
                 </Flex>
             )}
 
@@ -191,4 +187,4 @@ function Invoices() {
     );
 }
 
-export default Invoices;
+export default Sources;

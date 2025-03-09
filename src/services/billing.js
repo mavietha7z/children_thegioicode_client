@@ -122,6 +122,20 @@ export const requestUserPaymentInvoice = async (order_id) => {
     }
 };
 
+export const requestUserGetBillingSources = async (page) => {
+    try {
+        const res = await request.get(`/my/billings/sources`, {
+            params: {
+                page,
+            },
+        });
+
+        return res.data;
+    } catch (error) {
+        return error.response?.data;
+    }
+};
+
 export const requestUserGetOrderTemplate = async (page) => {
     try {
         const res = await request.get(`/my/billings/templates`, {

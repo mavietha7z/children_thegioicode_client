@@ -26,6 +26,7 @@ const router = {
     billing_orders: billing + '/orders',
     sources_free: sources + '/mien-phi',
     billing_balance: billing + '/balance',
+    billing_sources: billing + '/sources',
     history_login: user + '/history-login',
     billing_invoices: billing + '/invoices',
     billing_templates: billing + '/templates',

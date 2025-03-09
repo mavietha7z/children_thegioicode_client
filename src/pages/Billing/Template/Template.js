@@ -238,7 +238,7 @@ function Template() {
 
     return (
         <Billing
-            keyTab="5"
+            keyTab="6"
             label={
                 <span className="box-align-center gap-2 text-subtitle">
                     <IconTemplate size={20} />

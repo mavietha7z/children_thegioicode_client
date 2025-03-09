@@ -108,7 +108,7 @@ function Orders() {
             dataIndex: 'id',
             key: 'id',
             render: (id) => (
-                <Link to={`/billing/orders/${id}`} className="hover-underline">
+                <Link to={`${router.billing_orders}/${id}`} className="hover-underline">
                     #{id}
                 </Link>
             ),
@@ -118,7 +118,7 @@ function Orders() {
             dataIndex: 'invoice_id',
             key: 'invoice_id',
             render: (invoice_id) => (
-                <Link to={`/billing/invoices/${invoice_id}`} className="hover-underline">
+                <Link to={`${router.billing_invoices}/${invoice_id}`} className="hover-underline">
                     #{invoice_id}
                 </Link>
             ),

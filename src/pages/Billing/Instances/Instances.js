@@ -497,7 +497,7 @@ function Instances() {
 
     return (
         <Billing
-            keyTab="6"
+            keyTab="7"
             label={
                 <span className="box-align-center gap-2 text-subtitle">
                     <IconServer2 size={20} />

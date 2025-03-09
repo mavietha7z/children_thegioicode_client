@@ -54,6 +54,7 @@ const menus = [
             { icon: <IconBalance width={35} height={35} />, title: 'Giao dịch', path: router.billing_balance },
             { icon: <IconShoppingBag size={35} />, title: 'Đơn hàng', path: router.billing_orders },
             { icon: <IconFileInvoice size={35} />, title: 'Hoá đơn', path: router.billing_invoices },
+            { icon: <IconSourceCode size={35} />, title: 'Đơn mã nguồn', path: router.billing_sources },
             { icon: <IconTemplate size={35} />, title: 'Đơn tạo website', path: router.billing_templates },
             { icon: <IconServer2 size={35} />, title: 'Instances', path: router.billing_instances },
         ],
