@@ -20,6 +20,16 @@ export const requestUserRechargeCharging = async (data) => {
     }
 };
 
+export const requestUserGetChargings = async () => {
+    try {
+        const res = await request.get('/my/billings/recharge/chargingws');
+
+        return res.data;
+    } catch (error) {
+        return error.response?.data;
+    }
+};
+
 export const requestUserGetBalances = async (page) => {
     try {
         const res = await request.get('/my/billings/balances', {

@@ -4876,6 +4876,21 @@ textarea {
     background: var(--pending_color) !important;
 }
 
+.bg-success {
+    background-color: var(--success_color);
+    color: #fff;
+}
+
+.bg-danger {
+    background-color: var(--error_color);
+    color: #fff;
+}
+
+.bg-info {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
 .box-header-icon {
     background-color: #f3f3f4 !important;
     border: 1px solid #fff;

@@ -1,9 +1,10 @@
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { BankOutlined } from '@ant-design/icons';
 import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconCheck, IconCopy } from '@tabler/icons-react';
-import { Avatar, Button, Card, Col, Flex, Form, Image, Input, Radio, Row, Select, Spin, Tooltip, notification } from 'antd';
+import { Avatar, Button, Card, Col, Flex, Form, Image, Input, Radio, Row, Select, Spin, Table, Tag, Tooltip, notification } from 'antd';
 
 import Billing from '../Billing';
 import router from '~/configs/routes';
@@ -12,9 +13,75 @@ import { serviceCopyKeyBoard } from '~/configs';
 import IconQuestion from '~/assets/icon/IconQuestion';
 import IconRecharge from '~/assets/icon/IconRecharge';
 import { logoutUserSuccess } from '~/redux/reducer/auth';
-import { requestUserGetRecharge, requestUserRechargeCharging } from '~/services/billing';
+import { requestUserGetChargings, requestUserGetRecharge, requestUserRechargeCharging } from '~/services/billing';
 
 const defaultAmounts = [10000, 20000, 50000, 100000, 200000, 500000, 1000000];
+
+const columns = [
+    {
+        title: 'TT',
+        key: 'message',
+        render: (data) => {
+            let color = '#ff4d4f';
+            if (data.status === 1) {
+                color = '#28a745';
+            }
+            if (data.status === 2) {
+                color = '#17a2b8';
+            }
+            if (data.status === 99) {
+                color = '#ffc107';
+            }
+
+            return <Tag color={color}>{data.message}</Tag>;
+        },
+    },
+    {
+        title: 'Loại thẻ',
+        dataIndex: 'telco',
+        key: 'telco',
+    },
+    {
+        title: 'Thông tin',
+        key: 'info',
+        render: (data) => (
+            <Fragment>
+                <span>{data.code}</span>
+                <br />
+                <span>{data.serial}</span>
+            </Fragment>
+        ),
+    },
+    {
+        title: 'Khai',
+        dataIndex: 'declared_value',
+        key: 'declared_value',
+        render: (declared_value) => convertCurrency(declared_value),
+    },
+    {
+        title: 'Thực',
+        dataIndex: 'value',
+        key: 'value',
+        render: (value) => convertCurrency(value),
+    },
+    {
+        title: 'Nhận',
+        dataIndex: 'amount',
+        key: 'amount',
+        render: (amount) => convertCurrency(amount),
+    },
+    {
+        title: 'Ngày nạp/Xử lý',
+        key: 'date',
+        render: (data) => (
+            <Fragment>
+                <span>{moment(data.created_at).format('DD/MM/YYYY HH:mm:ss')}</span>
+                <br />
+                {data.approved_at ? <span>{moment(data.approved_at).format('DD/MM/YYYY HH:mm:ss')}</span> : 'Đang xử lý'}
+            </Fragment>
+        ),
+    },
+];
 
 const formatNumber = (num) => {
     if (!num) return '0';
@@ -31,6 +98,7 @@ function Recharge() {
     const [wallet, setWallet] = useState(null);
     const [wallets, setWallets] = useState([]);
     const [amounts, setAmounts] = useState([]);
+    const [chargings, setChargings] = useState([]);
 
     const [dataActive, setDataActive] = useState(0);
     const [amount, setAmount] = useState('Số khác');
@@ -75,7 +143,7 @@ function Recharge() {
         setValue(e.target.value);
     };
 
-    const handleSelectWallet = (wallet) => {
+    const handleSelectWallet = async (wallet) => {
         const amounts = defaultAmounts.map((amount, index) => {
             return {
                 amount,
@@ -89,6 +157,22 @@ function Recharge() {
         setAmount('Số khác');
         setAmountQr(defaultAmounts[0]);
         setAmountBill(formatNumber(defaultAmounts[0]));
+
+        if (wallet.callback_code === 'recharge_card') {
+            const result = await requestUserGetChargings();
+
+            if (result.status === 401 || result.status === 403) {
+                dispatch(logoutUserSuccess());
+                navigate(router.home);
+            } else if (result?.status === 200) {
+                setChargings(result.data);
+            } else {
+                notification.error({
+                    message: 'Thông báo',
+                    description: result?.error || 'Lỗi hệ thống vui lòng thử lại sau',
+                });
+            }
+        }
     };
 
     const handleSelectAmount = (index, type = null) => {
@@ -178,6 +262,7 @@ function Recharge() {
             dispatch(logoutUserSuccess());
             navigate(router.home);
         } else if (result?.status === 200) {
+            setChargings([result.data, ...chargings]);
             form.resetFields();
 
             notification.success({
@@ -305,6 +390,18 @@ function Recharge() {
                                         </Col>
                                     )}
                                 </Fragment>
+
+                                {wallet.callback_code === 'recharge_card' && (
+                                    <Col span={24}>
+                                        <h3 className="my-5 font-weight-bold font-size-16">Lịch sử nạp thẻ</h3>
+                                        <Table
+                                            columns={columns}
+                                            dataSource={chargings.map((charging) => ({ key: charging.id, ...charging }))}
+                                            pagination={false}
+                                            style={{ overflowX: 'auto' }}
+                                        />
+                                    </Col>
+                                )}
                             </Row>
                         ) : (
                             <div className="py-4 ml-1 text-subtitle">Quý khách vui lòng chọn cổng thanh toán!</div>
@@ -314,7 +411,7 @@ function Recharge() {
                     {amounts.length > 0 && (
                         <Col md={7} xs={24} style={{ padding: '0 12px' }}>
                             <div className="rounded-8 p-3 border container-make-payment d-flex flex-column" style={{ minHeight: '100%' }}>
-                                <div className="w-full flex-1">
+                                <div className="w-full">
                                     <h3 className="mb-3 font-weight-bold font-size-20">Nạp tiền</h3>
                                     <div className="d-flex gap-2 border border-white p-3 rounded-8 mb-4 align-items-center">
                                         <Avatar icon={<BankOutlined />} className="background-primary" />
