@@ -224,9 +224,13 @@ function TemplateDetail() {
                                                 </Form.Item>
                                                 <div className="mb-4 mt-1 font-size-13">
                                                     Nếu bạn chưa có tên miền thể mua{' '}
-                                                    <Link to={configs?.contacts?.zalo_url} target="_blank">
+                                                    <a
+                                                        href={`https://zalo.me/${configs.contacts.zalo_url}`}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                    >
                                                         tại đây
-                                                    </Link>
+                                                    </a>
                                                 </div>
                                             </Col>
                                             <Col md={24} xs={24}>

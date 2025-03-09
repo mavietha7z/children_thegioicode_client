@@ -231,7 +231,12 @@ function Recharge() {
                                     </p>
                                     <p className="mb-5 text-subtitle">
                                         Nếu quá lâu không thấy cập nhật số dư, Vui lòng liên hệ hỗ trợ
-                                        <a href={configs.contacts.zalo_url} target="_blank" rel="noreferrer" className="ml-1">
+                                        <a
+                                            href={`https://zalo.me/${configs.contacts.zalo_url}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="ml-1"
+                                        >
                                             tại đây.
                                         </a>
                                     </p>

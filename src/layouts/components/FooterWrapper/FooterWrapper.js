@@ -1,5 +1,6 @@
 import { Col, Row } from 'antd';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Footer } from 'antd/es/layout/layout';
 import { isMobile } from 'react-device-detect';
 import { IconBrandTelegram, IconMail, IconMapPin, IconPhone } from '@tabler/icons-react';
@@ -12,6 +13,8 @@ import imageIconYoutube from '~/assets/image/icon-youtube.svg';
 import imageIconFacebook from '~/assets/image/icon-facebook.svg';
 
 function FooterWrapper() {
+    const { configs } = useSelector((state) => state.apps);
+
     return (
         <Footer style={{ backgroundColor: '#091a4b', marginBottom: isMobile ? 76 : 0 }}>
             <div className="footer-tgc">
@@ -24,19 +27,19 @@ function FooterWrapper() {
                                 </Link>
                                 <div className="d-flex gap-2 mt-4">
                                     <IconMapPin size={20} />
-                                    <p className="mb-3">03 Nguyễn Thiếp, Pleiku, Gia Lai, Việt Nam</p>
+                                    <p className="mb-3">{configs?.contacts?.address}</p>
                                 </div>
                                 <div className="d-flex gap-2">
                                     <IconPhone size={20} />
-                                    <p className="mb-3">0987 654 321</p>
+                                    <p className="mb-3">{configs?.contacts?.phone_number}</p>
                                 </div>
                                 <div className="d-flex gap-2">
                                     <IconBrandTelegram size={20} />
-                                    <p className="mb-3">@Netcode</p>
+                                    <p className="mb-3">@{configs?.contacts?.telegram_url}</p>
                                 </div>
                                 <div className="d-flex gap-2 mb-4">
                                     <IconMail size={20} />
-                                    <p className="mb-3">noreply@netcode.vn</p>
+                                    <p className="mb-3">{configs?.contacts?.email}</p>
                                 </div>
                                 <a href="/" target="_blank" rel="noreferrer">
                                     <img src={imageIconDmca} alt="" />
@@ -140,18 +143,18 @@ function FooterWrapper() {
                                 <div className="footer-icon">
                                     <ul>
                                         <li>
-                                            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
-                                                <img src={imageIconFacebook} alt="" />
+                                            <a href={configs?.contacts?.facebook_url} target="_blank" rel="noreferrer">
+                                                <img src={imageIconFacebook} alt="Facebook" />
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://zalo.me/0987654321" target="_blank" rel="noreferrer">
-                                                <img src={imageIconZalo} alt="" />
+                                            <a href={`https://zalo.me/${configs?.contacts?.zalo_url}`} target="_blank" rel="noreferrer">
+                                                <img src={imageIconZalo} alt="Zalo" />
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/" target="_blank" rel="noreferrer">
-                                                <img src={imageIconYoutube} alt="" />
+                                            <a href={configs?.contacts?.youtube_url} target="_blank" rel="noreferrer">
+                                                <img src={imageIconYoutube} alt="Youtube" />
                                             </a>
                                         </li>
                                     </ul>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Breadcrumb, Button, Card, Col, Empty, Flex, Row } from 'antd';
@@ -7,6 +8,7 @@ import router from '~/configs/routes';
 
 function Terms() {
     const navigate = useNavigate();
+    const { configs } = useSelector((state) => state.apps);
 
     useEffect(() => {
         document.title = 'Netcode.vn - Điều khoản sử dụng';
@@ -79,17 +81,25 @@ function Terms() {
                                     <ul>
                                         <li>
                                             <em>
-                                                Hotline: <a href="tel:0987654321">0987 654 321</a>
+                                                Hotline:{' '}
+                                                <a href={`tel:${configs?.contacts?.phone_number}`}>{configs?.contacts?.phone_number}</a>
                                             </em>
                                         </li>
                                         <li>
                                             <em>
-                                                Telegram: <a href="https://t.me/netcode">@netcode</a>
+                                                Telegram:{' '}
+                                                <a
+                                                    href={`https://t.me/${configs?.contacts?.telegram_url}`}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                >
+                                                    @{configs?.contacts?.telegram_url}
+                                                </a>
                                             </em>
                                         </li>
                                         <li>
                                             <em>
-                                                Email: <a href="mailto:noreply@netcode.vn">noreply@netcode.vn</a>
+                                                Email: <a href={`mailto:${configs?.contacts?.email}`}>{configs?.contacts?.email}</a>
                                             </em>
                                         </li>
                                     </ul>
@@ -283,7 +293,7 @@ function Terms() {
                             <p>
                                 Netcode có thể thay đổi, sửa đổi, bổ sung hoặc thay thế nội dung điều khoản sử dụng bất cứ khi nào nhằm phù
                                 hợp với quy định của pháp luật nước Cộng hòa xã hội chủ nghĩa Việt Nam. Mọi thay đổi có hiệu lực kể từ khi
-                                được công bố trên website <a href="mailto:noreply@netcode.vn">noreply@netcode.vn</a>
+                                được công bố trên website <a href={`mailto:${configs?.contacts?.email}`}>{configs?.contacts?.email}</a>
                             </p>
                         </div>
                     </div>

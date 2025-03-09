@@ -1,4 +1,5 @@
 import { Button, Drawer } from 'antd';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Fragment, useEffect, useState } from 'react';
 import {
@@ -27,12 +28,13 @@ import IconBalance from '~/assets/icon/IconBalance';
 import IconRecharge from '~/assets/icon/IconRecharge';
 
 const menus = [
-    { key: 'home', title: 'trang chủ', icon: <IconHome size={20} />, link: router.home, items: [] },
+    { key: 'home', title: 'trang chủ', icon: <IconHome size={20} />, link: router.home, is_login: false, items: [] },
     {
         key: 'product',
         title: 'sản phẩm',
         icon: <IconBox size={20} />,
         link: false,
+        is_login: false,
         items: [
             { icon: <IconApi size={35} />, title: 'Public API', path: router.public_apis },
             { icon: <IconSourceCode size={35} />, title: 'Mã nguồn', path: router.sources },
@@ -40,12 +42,13 @@ const menus = [
             { icon: <IconServer2 size={35} />, title: 'Cloud server', path: router.cloud_server },
         ],
     },
-    { key: 'cloud', title: 'cloud server', icon: <IconPlus size={30} />, link: router.cloud_server, items: [] },
+    { key: 'cloud', title: 'cloud server', icon: <IconPlus size={30} />, link: router.cloud_server, is_login: false, items: [] },
     {
         key: 'billing',
         title: 'thanh toán',
         icon: <IconHomeDollar size={20} />,
         link: false,
+        is_login: true,
         items: [
             { icon: <IconRecharge width={35} height={35} />, title: 'Nạp tiền', path: router.billing },
             { icon: <IconBalance width={35} height={35} />, title: 'Giao dịch', path: router.billing_balance },
@@ -60,6 +63,7 @@ const menus = [
         title: 'khác',
         icon: <IconMenu2 size={20} />,
         link: false,
+        is_login: true,
         items: [
             { icon: <IconUserCircle size={35} />, title: 'Thông tin cá nhân', path: router.profile },
             { icon: <IconCrown size={35} />, title: 'Điểm thưởng', path: router.bonus_point },
@@ -76,6 +80,7 @@ function NavMobile() {
     const [currentMenu, setCurrentMenu] = useState(null);
 
     const navigate = useNavigate();
+    const { currentUser } = useSelector((state) => state.auth);
 
     useEffect(() => {
         if (open) {
@@ -99,13 +104,12 @@ function NavMobile() {
 
         // Đóng menu nếu đang mở và click lại
         if (currentKey === key) {
-            setOpen(false);
-            setCurrentMenu(null);
+            setOpen(!open);
         } else {
             // Mở menu mới
             setOpen(true);
-            setCurrentMenu(menu);
         }
+        setCurrentMenu(menu);
     };
 
     const handleCloseDrawer = () => {
@@ -129,37 +133,44 @@ function NavMobile() {
                 ))}
             </div>
 
-            <Drawer
-                title={`Danh mục ${currentMenu ? currentMenu.title : ''}`}
-                placement="bottom"
-                closable={false}
-                onClose={handleCloseDrawer}
-                open={open}
-                zIndex={100}
-                height={600}
-                classNames={{ header: 'text-center px-3 py-2-5', content: 'rounded-top-xl', body: 'px-0 pt-0' }}
-                extra={<Button type="text" className="box-center" icon={<IconX size={20} />} onClick={handleCloseDrawer}></Button>}
-                styles={{ wrapper: { height: 600, boxShadow: 'none' }, body: { paddingBottom: 60 } }}
-            >
-                <div className="h-full w-full overflow-auto">
-                    <div className="p-3-5">
-                        <div className="nav-category">
-                            {currentMenu &&
-                                currentMenu.items.map((menu, index) => (
-                                    <Link
-                                        to={menu.path}
-                                        className="box-center flex-column gap-1 px-3 py-4 bg-card-info-modal rounded"
-                                        key={index}
-                                        onClick={handleCloseDrawer}
-                                    >
-                                        {menu.icon}
-                                        <div className="font-size-16 text-center nav-link-text">{menu.title}</div>
-                                    </Link>
-                                ))}
+            {currentMenu && (
+                <Drawer
+                    title={`Danh mục ${currentMenu.title}`}
+                    placement="bottom"
+                    closable={false}
+                    onClose={handleCloseDrawer}
+                    open={open}
+                    zIndex={100}
+                    height={600}
+                    classNames={{ header: 'text-center px-3 py-2-5', content: 'rounded-top-xl', body: 'px-0 pt-0' }}
+                    extra={<Button type="text" className="box-center" icon={<IconX size={20} />} onClick={handleCloseDrawer}></Button>}
+                    styles={{ wrapper: { height: 600, boxShadow: 'none' }, body: { paddingBottom: 60 } }}
+                >
+                    <div className="h-full w-full overflow-auto">
+                        <div className="p-3-5">
+                            <div className={currentMenu.is_login && !currentUser ? '' : 'nav-category'}>
+                                {currentMenu.is_login && !currentUser ? (
+                                    <div className="box-center flex-column gap-1 px-3 py-3 bg-card-info-modal rounded">
+                                        <span className="font-size-16">Vui lòng đăng nhập để xem danh mục</span>
+                                    </div>
+                                ) : (
+                                    currentMenu.items.map((menu, index) => (
+                                        <Link
+                                            to={menu.path}
+                                            className="box-center flex-column gap-1 px-3 py-4 bg-card-info-modal rounded"
+                                            key={index}
+                                            onClick={handleCloseDrawer}
+                                        >
+                                            {menu.icon}
+                                            <div className="font-size-16 nav-link-text">{menu.title}</div>
+                                        </Link>
+                                    ))
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </Drawer>
+                </Drawer>
+            )}
         </Fragment>
     );
 }

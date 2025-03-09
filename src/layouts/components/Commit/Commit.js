@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Breadcrumb, Button, Card, Col, Empty, Flex, Row, Table } from 'antd';
@@ -7,6 +8,7 @@ import router from '~/configs/routes';
 
 function Commit() {
     const navigate = useNavigate();
+    const { configs } = useSelector((state) => state.apps);
 
     useEffect(() => {
         document.title = 'Netcode.vn - Cam hết dịch vụ';
@@ -129,8 +131,9 @@ function Commit() {
                         <ul>
                             <li>
                                 Để yêu cầu bồi thường trong các trường hợp Netcode không đạt được cam kết, khách hàng vui lòng email đến địa
-                                chỉ <a href="mailto:noreply@netcode.vn">noreply@netcode.vn</a> Nếu yêu cầu bồi thường là hợp lệ, khoản tiền
-                                đền bù cho quý khách sẽ được cộng vào tài khoản balance để sử dụng cho các lần thanh toán sau.
+                                chỉ <a href={`mailto:${configs?.contacts?.email}`}>{configs?.contacts?.email}</a> Nếu yêu cầu bồi thường là
+                                hợp lệ, khoản tiền đền bù cho quý khách sẽ được cộng vào tài khoản balance để sử dụng cho các lần thanh toán
+                                sau.
                             </li>
                             <li>
                                 Yêu cầu bồi thường hợp lệ sẽ bao gồm các thông tin sau:
@@ -198,17 +201,21 @@ function Commit() {
                                 <ul>
                                     <li>
                                         <em>
-                                            Hotline: <a href="tel:0987654321">098 7654 321</a>
+                                            Hotline:{' '}
+                                            <a href={`tel:${configs?.contacts?.phone_number}`}>{configs?.contacts?.phone_number}</a>
                                         </em>
                                     </li>
                                     <li>
                                         <em>
-                                            Telegram: <a href="https://t.me/netcode">@netcode</a>
+                                            Telegram:{' '}
+                                            <a href={`https://t.me/${configs?.contacts?.phone_number}`} target="_blank" rel="noreferrer">
+                                                @{configs?.contacts?.telegram_url}
+                                            </a>
                                         </em>
                                     </li>
                                     <li>
                                         <em>
-                                            Email: <a href="mailto:noreply@netcode.vn">noreply@netcode.vn</a>
+                                            Email: <a href={`mailto:${configs?.contacts?.email}`}>{configs?.contacts?.email}</a>
                                         </em>
                                     </li>
                                 </ul>
